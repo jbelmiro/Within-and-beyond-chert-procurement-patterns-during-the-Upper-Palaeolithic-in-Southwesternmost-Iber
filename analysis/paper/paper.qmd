@@ -1,0 +1,477 @@
+---
+title: "Title Goes Here"
+author:
+  - Jane Doe:
+      correspondence: "yes"
+      email: janedoe@fosg.org
+      orcid: 0000-0003-1689-0557
+      institute:
+        - fosg
+        - fop
+  - John Q. Doe:
+      institute: fosg
+      orcid: 0000-0003-1689-0558
+  - Peder Ås:
+      institute: fosg
+      orcid: 0000-0003-1689-0559
+  - Juan Pérez:
+      orcid: 0000-0003-1689-0551
+      institute:
+        - name: Acme Corporation
+  - Max Mustermann:
+      orcid: 0000-0003-1689-0552
+institute:
+  - fosg:
+      name: Formatting Open Science Group
+      address: 23 Science Street, Eureka, Mississippi, USA
+  - fop: Federation of Planets
+title-block-published: "Last updated"  
+date: now
+date-format: long
+format: 
+  docx:
+    reference-doc: "../templates/template.docx" # Insert path for the DOCX file
+execute:
+  echo: false
+  warning: false
+  message: false
+  comment: "#>"
+  fig-path: "../figures/"
+  fig-dpi: 600
+filters:
+  - ../templates/scholarly-metadata.lua
+  - ../templates/author-info-blocks.lua
+  - ../templates/pagebreak.lua
+bibliography: references.bib
+csl: "../templates/journal-of-archaeological-science.csl" # Insert path for the bib-style
+abstract: |
+  Text of abstract
+keywords: |
+  keyword 1; keyword 2; keyword 3
+highlights: |
+  These are the highlights. 
+---
+
+<!-- This is the format for text comments that will be ignored during renderings. Do not put R code in these comments because it will not be ignored. -->
+
+<!-- With the following code you can access and display values from the yml header above. -->
+
+Keywords: `r rmarkdown::metadata$keywords`
+
+Highlights: `r rmarkdown::metadata$highlights`
+
+<!-- The actual document text starts here: -->
+
+```{r packages, echo=FALSE}
+# Call packages
+library(readr)
+library(dplyr)
+library(stringr)
+library(tidyr)
+library(ggplot2)
+library(scales)
+library(janitor)
+
+```
+
+# Introduction
+
+Here is a citation [@Marwick2017]
+
+# Background
+
+# Methods
+
+The samples chosen for this study consist of the chert and chalcedony lithic artifacts with individual IDs (excluding buckets) from the Upper Paleolithic levels of the Terrace and Shelter areas of Vale Boi. The sample from the Terrace area (VB-T) consists of 3653 from levels 8 to 4, while the sample from the Shelter area (VBS) consists of 1652 from levels C to A. These two areas were chosen since both have detailed spatial information (as mentioned in section *IN*), several radiocarbon dates through different levels, and previous studies providing lithic technology, faunal and geoarchaeological data.
+
+## Geo-archaeological surveys
+
+The geological data and comparative collection from local and regional cherts used in this study were obtained through previous prospections and petrographic works (\*\*), located at the Lusolit lithotheque (hosted at ICArEHB, University of Algarve). These samples also included cherts collected from previous prospections from other areas of Portugal (such as central Portugal). Hand samples were used throughout the macroscopic characterization for comparison with the archaeological materials, and the archaeological thin sections were compared with the previously studied geological chert thin sections. The lithotheque from the Unit of Geoarchaeology and Archaeometry Applied to Historic Artistic and Monumental Heritage from the University of Cadiz was also visited, to understand the macroscopic variability from the Cadiz local and regional cherts, to discern between local and regional chert types and possible long-distance cherts.
+
+## Macroscopic characterization
+
+We applied a macroscopic analysis to both Terrace and Shelter samples, which was divided into two steps. The first step included a preliminary characterization using a hand lens of 10x magnification. This step allowed us to create groups and subgroups based on similar macroscopic characteristics which have been used in previous studies to describe and discern between different types of chert; these include characteristics such as color, translucency, and feel; a data dictionary for the recorded variables can be found in the Supplementary Materials (\*\*).
+
+In the second step, we used a stereomicroscope () to observe each sample in further detail, which allowed us to better characterize the artifacts (especially regarding inclusions and alterations), and the previously established groups. The data dictionary used for the individual samples can also be found in Supplementary Materials (\*\*). Given the inherent macroscopic variability of the geological samples and archaeological specimens, as well as the number of samples, the database used for the individual analysis is simplified and focused on collecting data related to weight, cortex, and alterations.
+
+## Petrographic characterization
+
+To better characterize the different chert groups identified in the macroscopic analysis, we analyzed ++ thin sections. The samples chosen for this analysis include at least one sample from each group present throughout the stratigraphy of the Terrace area, from different archaeological levels. For groups which showed macroscopic variability, several thin sections were analysed to better characterize these cherts. @tbl-TS-table Petrographic thin sections were analyzed by polarized light microscopy () to determine the mineral composition, textural characteristics, allochems, and bioclasts, as well as any alterations. A total of 20 thin sections were prepared at Thin Section Lab (Toul, France) and analyzed at the ICArEHB laboratory. The archaeological samples chosen for the petrographic study are from the Terrace area, from several levels, and focused on characterizing the macroscopic variability, reflected on the several groups and subgroups (table \*\*).
+
+```{r}
+#| label: tbl-TS-table
+#| tbl-cap: Thin section list.
+#| echo: false
+
+TS_short_list <- read_csv(here::here('analysis/data/raw_data/TS_short_list.csv'))
+
+knitr::kable(TS_short_list)
+
+```
+
+# Results
+
+```{r}
+#| label: db-setup
+#| echo: false
+
+# Terrace DB preparation
+# Read DBs
+T_RM_data <- read_csv(here::here('analysis/data/raw_data/MACRO_IND_TERRACE.csv')) # Terrace RM analysis
+context <- read_csv(here::here('analysis/data/raw_data/VB_Terrace_context.csv')) # Terrace Field DB - lithic artifact info
+xyz <- read_csv(here::here('analysis/data/raw_data/VB_Terrace_xyz.csv')) # Terrace Field DB - just coordinates
+
+# Df cleaning and uniformizing
+cols_to_concat <- c("UNIT", "ID") # Vector to concatenate Unit and ID in one single variable (e.g. A6-100) - to use with both Field databases
+context$ID <- str_squish(context$ID) # Remove empty spaces from ID field
+xyz$ID <- str_squish(xyz$ID) # Remove empty spaces from UNIT field
+
+# Concatenate UNIT and ID variables in one single variable (e.g. A6-100)
+context <- context %>%
+  # dplyr::rename("Unit" = "j") %>% # Renaming first column
+  unite(col='ID', cols_to_concat, sep="-", remove=FALSE) %>% # Unite Unit with Id s«using cols_to_concat
+  select(ID, Level, Spit, Code) %>% # Selecting important variables
+  distinct(ID, .keep_all = TRUE)
+
+xyz <- xyz %>%
+  #dplyr::rename(Unit = UNIT) %>% # Rename to homogenize
+  unite(col='ID', cols_to_concat, sep="-", remove=FALSE) %>% # Unite Unit with Id s«using cols_to_concat
+  filter(Suffix == 0) %>% # To avoid several entries related to several points of the same artifact
+  select(ID, X, Y, Z) %>% # Selecting important variables
+  distinct(ID, .keep_all = TRUE)
+
+field_data <- full_join(xyz, context, by = "ID") # Join field tables
+T_dataset <- left_join(T_RM_data, field_data, by = "ID") # Join field and RM type tables
+
+T_dataset <- T_dataset %>% 
+  #filter(Level %in% c("4", "4C", "4D", "4E", "5", "6", "7"))
+  filter(Level !="4B" & Level !="7C" & Level!="8") # Filtering out levels with barely any artifacts
+
+
+cols_to_concat_spit <- c("Level", "Spit")
+RM_by_spit <- T_dataset %>%
+  filter(!Spit %in% c("limp_corte", "profile", " ", NA)) %>%
+  select(ID, Z, Level, Spit, RMTYPE) %>%
+  unite(col='depth', cols_to_concat_spit, sep=".", remove=FALSE) %>% 
+  dplyr::group_by(depth) %>%
+  dplyr::count(RMTYPE) %>%
+  mutate(freq = n / sum(n)*100)
+
+
+# Mutate level 5 to add phases: top of 5 (4E/5) and bottom of 5 (5), following Belmiro et al. (2020).
+phase_dataset <- T_dataset %>% 
+  mutate(Level = case_when(
+    Level == 5 & Z > 24.1 ~ "4E/5",
+    Level == 5 & Z < 24.1 ~ "5",
+    TRUE ~ Level))
+
+# Shelter DB preparation
+S_RM_data <- read_csv(here::here('analysis/data/raw_data/MACRO_IND_SHELTER.csv')) # Shelter RM analysis
+S_field_data <- read_csv(here::here('analysis/data/raw_data/VB_Shelter_xyz.csv')) # Shelter coordinates
+
+S_RM_data <- S_RM_data %>%
+  mutate_at("ID", str_replace, "VB", "") %>% # Remove "VB" from ID
+  mutate(RMTYPE = case_when(
+    RMTYPE == "Type 2" ~ "TYPE 2",
+    .default = RMTYPE))
+
+cols_to_concat_shelter <- c("YEAR", "ID") # Concatenate YEAR and ID variables in one single variable (e.g. 05-500)
+
+S_field_data <- S_field_data %>%
+  unite(col='ID', cols_to_concat_shelter, sep="-", remove=FALSE) %>% # Unite YEAR with Id s«using cols_to_concat
+  select(ID, X, Y, Z) %>% # Selecting important variables
+  distinct(ID, .keep_all = TRUE)
+S_dataset <- left_join(S_RM_data, S_field_data, by = "ID")
+
+```
+
+```{r}
+#| label: t-table
+
+T_table <- phase_dataset %>%
+  filter(RMTYPE !="INDET") %>% 
+  mutate(RMTYPE = factor(RMTYPE, levels = c("Chalcedony","TYPE 2", "TYPE 15", "TYPE 7",
+                                        "TYPE 12", "TYPE 13","TYPE 13B", 
+                                        "TYPE 11", "TYPE 11F", "Oolitic", "GB", "TL"))) %>%
+  tabyl(RMTYPE, Level) %>%
+  adorn_totals(c("row", "col")) %>%
+  adorn_percentages("col") %>%
+  adorn_pct_formatting(2) %>%
+  adorn_ns("front")
+
+```
+
+The three main used raw materials at the archaeological site of Vale Boi are quartz, greywacke, and chert. Using the field database with all individually coordinated lithic artifacts, we compared the incidence of chert and chalcedony in opposition to the remaining lithics of other raw materials. Since some lithic assemblages of the Terrace area are currently under study, the data regarding the percentage of raw materials in the “Other” category was not available for all archaeological levels. @fig-rm-comparison shows that for the selected levels, and using single coordinated artifacts (excluding buckets), chert represents only \~20-15% of the lithic assemblage. Based on previous lithic studies in the terrace area, the remaining 80% of other raw materials are mostly composed of quartz and greywacke. Although no systematic raw material research has been applied to the latter raw materials, they have been interpreted as local and readily available in the proximity of the site. Frequently, the quartz and greywacke assemblage includes large amounts of shattered and/or unknapped chunks or slabs. Previous studies from the terrace area have also shown that when removing shatter and chunks, the percentages of chert become much more representative when compared to greywacke and quartz. Based on this, despite the low amounts of individually plotted chert artifacts in the field database, chert continues to be one of the main raw materials to produce lithic stone tools, with complete knapping sequences and formal toolkits.
+
+```{r}
+#| label: tbl-indet-freq
+#| tbl-cap: N and percentage of grouped and indeterminate artifacts by level.
+
+indet_table <- phase_dataset %>% 
+  mutate(Group = if_else(RMTYPE=="INDET", "Indeterminate", "Grouped")) %>% 
+  tabyl(Group,Level) %>% 
+  adorn_totals(c("row", "col")) %>%
+  adorn_percentages("col") %>%
+  adorn_pct_formatting(2) %>%
+  adorn_ns("front")
+
+```
+
+As previously mentioned, whenever too altered to confidently attribute a group, the artifacts were instead classified as indeterminable (INDET). As seen in @tbl-indet-freq, level 4 shows the higher percentages of indeterminate artifacts, corresponding to 40% of the total sample (n=1027). This is due to the frequent alterations of the sample, especially related with patinas and alteration rinds, pits and fire/heat alterations. For all other levels, indeterminate represents in mean \~28% of the chert artifacts.
+
+```{r}
+#| label: fig-rm-comparison
+#| fig-cap: "Comparison of chert, chalcedony and other raw materials coordinate in the terrace area of the archaeological site of Vale Boi."
+#| echo: false
+
+context_short <- context %>% 
+  filter(Level %in% c("4", "4C", "4D", "4E", "5", "6", "7"))
+dataset_short <- T_dataset %>% 
+  select(ID, RMTYPE)
+T_short <- full_join(context_short, dataset_short, by = "ID")
+T_short["RMTYPE"][is.na(T_short["RMTYPE"])] <- "Other"
+
+T_short <- T_short %>% 
+ mutate(Rawmaterial = case_when(
+    RMTYPE == "Other" ~ "Other",
+    RMTYPE == "Chalcedony" ~ "Chalcedony",
+    RMTYPE != "Other" | RMTYPE != "Chalcedony" ~ "Chert"))
+
+#T_short_table <- T_short %>% 
+#   tabyl(Rawmaterial, Level) %>%
+# adorn_totals(c("row", "col")) %>%
+#  adorn_percentages("col") %>%
+#  adorn_pct_formatting(2) %>%
+#  adorn_ns("front")
+
+T_short %>%
+  dplyr::group_by(Level, Rawmaterial) %>% 
+  dplyr::summarise(n = n()) %>%
+  mutate(percent = n/sum(n)) %>% 
+  ggplot(aes(x=Level, y = percent, fill = Rawmaterial)) +
+  geom_bar(stat = "identity", width = 0.5) +
+  scale_y_continuous(labels = scales::percent_format()) +
+  theme_minimal() + #type of theme
+  labs(x = "Level", y = NULL) +# change labels
+  guides(fill=guide_legend(title=NULL)) + # remove legend title
+  geom_text(aes(label=ifelse(percent >= 0.07, paste0(sprintf("%.1f", percent*100),"%"),"")),
+                position=position_stack(vjust=0.5), colour="white", size=3) +
+  theme(axis.title.x = element_text(size = 10, vjust = -1))
+
+```
+
+Through the macroscopic and petrographic analysis we identified 24 types of chert and three types of chalcedony. Of these, one type of chalcedony and 9 types of chert are composed of several samples (\>10) and present across both areas (Terrace and Shelter) and throughout the Upper Paleolithic occupations of the Terrace area. Thin sections were produced for the lithics of the latter groups. One type had several samples (\>10; Type GB) but was only identified in the Shelter area, while 14 varieties of chert and 2 chalcedony are composed of one to three samples and restricted to specific levels. The latter varieties were collapsed into a category named TL (Trace lithotypes).
+
+We present here a short description of each identified macroscopic and petrographic type. A detailed macroscopic and petrographic description and figures for each type and sub-type of chert and chalcedony can be found in the SOM (++). The petrographic analysis PDF files for all thin sections studied in this paper (including macroscopic and microscopic figures) can also be found in our GitHub page (++) as well as the OSF repository (++).
+
+## Type description
+
+The chalcedony is a massive, fibrous chalcedony mudstone. It is characterized by a colorless and translucent appearance, often partially or completely white patinated. It has good to medium quality, due to frequent large crystallizations, irregularities or fractures which impact the knapping. In thin section, the chalcedony is composed by fibrous chalcedony, without allochems or bioclasts, and no porosity (\<1%). Radiating spherulitic textures are very frequent.
+
+The first chert groups identified at Vale Boi are massive micro-cryptocrystalline quartzes from a marine environment. Petrographically, these cherts are homogeneous, except for a small amount of artifacts with a banded variety within type 12. These cherts are characterized by wackestone textures, with accessory amounts of macrocrystalline quartz and fibrous chalcedony, frequently found replacing fossils and occasionally dolomite. Group 12 shows higher percentages of micrite/sparite. In all samples, fossils range from common to very frequent, albeit frequently unidentifiable. When identifiable in thin-section, they are sponge spicules, with the rare occurrence of possible foraminifera and ostracod in a sample from type 12. Porosity varies between 10% and 1%, of vug type. Macroscopically however, these groups show variability, which resulted in their separation in 4 different macroscopic groups; this separation was maintained for its possible usefulness in identifying preferred types of nodules or macroscopic varieties through time and for future correlation with technological data.
+
+Group 2 is characterized by single-color and multiple-color samples, ranging between yellow, grayish brown, pale red, and white, and with variable patterns such as splotched, broad mottling, speckling, and laminations. They are opaque, with sub-translucent areas mainly focused in the white areas of the sample. Whenever present, the cortex can be rounded or irregular, varying between thin to thick. Inclusions include black speckles and red speckles, which are probably organics and iron oxides. Bioclasts are frequently unidentifiable, but also include monaxon sponge spicules, bivalve shells replaced by quartz or chalcedony, and rarely triaxon sponge spicules. In the shelter area, the variety of identified fossils also includes possible uncommon ostracods, a possible small foraminifer, and echinoderm spines.
+
+Group 15 is characterized by light gray and reddish gray colors and varies between opaque to sub-translucent. It is characterized by the presence of splotches (often coarser and sub-translucent), speckling, and fine lamination. Whenever present, the cortex is white, rounded, and of medium thickness. Allochems such as iron oxides or opaques are also visible macroscopically as black speckling or rare red speckling. The bioclasts are frequently unidentifiable, due to poor preservation and are replaced by microcrystalline quartz or fibrous chalcedony, except for uncommon sponge spicules.
+
+Type 7 shows a heterogeneous structure with two types of fabrics. The interior of the samples and the nodules is gray, and sub-translucent with a single mica mineral, flecks, and speckles. The outer edge and within the grey fabric as splotches or broad mottling are white, opaque, and with yellow speckles. The cortex is white, with a sharp transition and with a medium to thick width. The morphology of the cortex in fully cortical samples is originally available as irregular (slightly oval) nodules within the parent rock. Whenever identifiable, bioclasts are limited to sponge spicules.
+
+Type 12 chert has a conchoidal fracture (albeit uneven at times) and acceptable to low quality due to the lack of homogeneity and frequent fractures, as well as a coarser fabric in certain areas. It has gray colors and ranges from opaque to sub-translucent. The group displays frequent patterns: splotched, banded, broad mottling, and speckling. The cortex is from an outcrop, frequently rounded, but also irregular. Based on reference samples, the chert seems to be enclosed within the parent rock as irregular or tabular nodules). The cortex is thin, with a sharp transition, and some artifacts show chunks of the parent rock attached to the cortex. Bioclasts are uncommon, and when identifiable are sponge spicules.
+
+Group 11 corresponds to a massive cryptocrystalline quartz with a mudstone texture. The lack of local similar cherts, as well as identifiable fossils does not allow us to attribute a depositional environment or epoch/stage. However, rare spicules were identified; given the exclusivity of the sponge’s (Porifera) living environment to be marine (Flügel, 2010), group 11 may be considered a chert formed in a marine environment. This chert is translucent and shows a variety of colors, ranging from brown, red, and gray, which seem to vary in function of the artifact’s thickness. Patterns are rare, however, whenever present they are laminated, with flecks, and splotches. In unaltered samples, bioclasts are rare. The cortex is rounded, and rarely pebble-like, ranging from thin to medium thickness. Two sub-groups were individualized based on macroscopic characteristics such as color, translucency variation, and patterns, although they may simply reflect the use of specific nodules from within Type 11’s variability. Five thin sections were produced to better characterize the macroscopic variability of this group and sub-groups. The petrographic analysis shows the samples are characterized by a mudstone texture and massive microstructure. It is mainly composed of cryptocrystalline quartz (between 95-97% in the samples), with accessory fibrous chalcedony found replacing fossils or filling fractures, and in some samples macrocrystalline quartz, microcrystalline quartz, and micrite/sparite. Allochems are opaques (u), iron oxides (u), and bioclasts (r/u). Bioclasts are unidentifiable and poorly preserved, replaced by fibrous chalcedony and rarely by microcrystalline quartz. Sponge spicules were identified in a single sample. Porosity is present between \<1-1%, of vug-type when identifiable.
+
+Group 11F corresponds to a massive micro-cryptocrystalline quartz from a marine environment and shelf/platform depositional environment. Identified and well-preserved fossils are foraminifera from the Pfenderenidae family, which are larger benthic foraminifera from marine environments. The association of these foraminifera indicates this chert formed from sediments deposited possibly between the Jurassic to the Cretaceous. Macroscopically, this group is characterized by gray colors and a white area, frequently at the center of the sample, which seems to be a weathering rind and where the presence of fossils is highlighted. The translucency ranges from sub-translucent to opaque and visible patterns are splotches, broad mottling, spots, and speckling. Whenever present, the cortex is rounded and thin. Petrographically, this group is a packstone (mudstone texture close to the edges) with a massive microstructure. It is composed of 97% micro-cryptocrystalline quartz, macrocrystalline quartz, and fibrous chalcedony, found mostly replacing fossils. Other minerals include uncommon iron oxides. The porosity is of vug type (3%). Fossil content is very frequent, albeit mostly unidentifiable and poorly preserved. Identified fossils are rare sponge spicules , rare ostracods with some degree of preservation, and common small, unidentified foraminifera (100 μm) of differing preservation degrees. Identifiable foraminifera are rare and from the Pfenderenidae family (500 μm).
+
+Group 13 is a massive micro-cryptocrystalline, peloidal/oolitic packstone, from a marine environment and possibly a high-energy, shallow depositional environment, due to the type, sorting, and preservation conditions of the ooids. It is characterized by two colors, white (opaque) and grey (sub-translucent), with splotches, speckles and horizontally dotted laminations. The cortex is from an outcrop, rounded, and varying between medium thickness to thick. This group shows several facies, with different types and concentrations of allochems and bioclasts, of which identifiable are peloids, ooids, and sponge spicules. A detailed scheme of the facies can be found in the SOM (++). The petrography results show this chert has a massive microstructure and packstone texture. It is composed mainly of micro-cryptocrystalline quartz (80%), fibrous chalcedony (10%), and micrite (10%). Allochems are opaques, iron oxides, ooids and peloids. The ooids are poorly preserved and only uncommonly show concentric lamellae in plane polarized light. Unlike macroscopical observations, bioclasts under the thin section are all unidentifiable, although rare fossils may be bivalve shells. Porosity is vug (10%).
+
+Group 13B corresponds to a banded micro-cryptocrystalline quartz/micrite peloidal packstone. It is opaque and has a heterogeneous structure and is characterized by a variable color distribution: it shows a horizontal laminated and finely laminated pattern, with gray dark gray bands intercalated with light gray bands. Whenever present, the cortex is rounded (from an outcrop source) and is generally thin. In specific samples, the cortex is present on two parallel planes of the sample (parallel to the laminations), which indicates the chert was originally available in bedded layers. Petrographically this chert is a banded packstone (banding of sedimentary origin), composed mostly of micro-cryptocrystalline quartz (48%), micrite (40%), dolomite (10%), and accessory fibrous chalcedony and mica (muscovite). The allochems are peloids, unidentifiable bioclasts, iron oxides, and opaque minerals. Porosity is low (1%).
+
+Group Oolitic is an oolitic packstone, massive micro-cryptocrystalline micrite/quartz from a marine environment and possibly a high-energy, shallow depositional environment, due to the type, sorting, and preservation conditions of the ooids. Its heterogeneous structure has two types of fabrics with different macroscopic characteristics: brown (opaque) and black (sub-translucent) fabric. The quality is acceptable since it has fine granularity and a smooth feel, but shows natural fractures and occasional inclusions, such as macrocrystalline quartz or chalcedony veins that may impact the knapping. The cortex is difficult to identify since it is similar to the brown fabric, highly altered, and with a gradual transition. Petrographically this group is a packstone with a massive microstructure. The chosen sample for the thin section is composed of 35% micro-cryptocrystalline quartz, 53% micrite, 9% macrocrystalline quartz, and accessory fibrous chalcedony (filling fractures) and mica; the percentages of quartz and micrite might be related to the fabrics present in the artifacts. Allochems are common iron oxides and very frequent ooids. Bioclasts are rare, poorly preserved, and replaced by quartz. The porosity is intraparticle and vug (10%). The ooids are distributed homogeneously across the sample (although clearly macroscopically visible in the brown fabric) and are highly abundant and concentrated. They are poorly sorted, varying between 500 and 20 μm. They show round-to-elliptical shapes, and their preservation is variable: some ooids show a poorly preserved micritic structure, while others show concentric laminae structures around a round nucleus [@flugelMicrofaciesCarbonateRocks2010], pp. 144\].
+
+Finally, group TL is characterized by several samples with differing characteristics from the established larger groups. Based on their different characteristics they have been interpreted as exotic or long-distance raw materials. A detailed description of these types can also be found in the SOM (++). TL01 is a jasper, with a massive microstructure and red coloration, with frequent fractures filled with colorless, translucent fibrous chalcedony. TL02 is an orange chalcedony of good quality, differing from the group of white/translucent chalcedony due to its color. TL03 is a massive chert with uncommon spots. TL04 is a yellow massive chert, with inclusions and fractures filled with fibrous chalcedony. TL05 is a grey, banded/massive chert, where the banding seems to be of ++ origin. TL06 is a sub-translucent, oolitic packstone chert. Unlike the oolitic cherts in the previous groups, this chert shows well-sorted and small (200-220 μm), round ooids with differentiated walls and cores. TL07 is characterized by a laminated dendritic pattern, with uncommon inclusions. TL08 is a translucent and colorless, massive chert, without inclusions. TL09 is a translucent chalcedony with a massive microstructure and packstone texture. It is characterized by unidentified, moss-like orange/red inclusions, and no other allochems or bioclasts. TL10 is a massive chert with frequent iron oxide speckling or banding. TL11 is a banded, translucent chert with no inclusions. TL12 is a massive oolitic packstone chert, white and translucent. The ooids are not visible under the naked eyes, and can only be identified under the stereomicroscope. TL13 is a translucent, banded chert without inclusions. TL14 is a massive chert with large benthic foraminifera (1-2 mm). TL15 is a massive brown chert with common iron oxides and unidentifiable fossils. And finally, TL 16 is a radiolarite with unidentifiable fossils.
+
+## Source attribution
+
+Based on the previously described macroscopic and petrographic characteristics of the Lower Jurassic cherts of the Algarve [@belmiro2023], we interpret Groups 2, 15, 7 and 12 to be local, as they are congruent with the described characteristics. Groups 2 and 15 are congruent with the frequently available brown/yellow and red nodules and beds, ranging from uncommon to very frequent fossils. The macroscopic similarities of Groups 7 and 12 are more limited, as they show similarities to specific nodules, rarely found in the known outcrops, as mostly located in the Ferrel area. As such, we interpret these cherts as local, but from nodules and outcrops that are no longer frequently available or visible in the landscape. This is especially relevant, since the Ferrel outcrops are mostly destroyed and can be found in poor preservation conditions, and with small, broken nodules in the surface, frequently altered [@belmiro2023].
+
+The similarities between chert artifacts at the UP occupations of Vale Boi and the chert from the Rio Maior region (Estremadura Portuguesa) have been previously suggested although without systematic studies to ascertain the attribution.
+
+These Cretaceous cherts, found in secondary deposition settings, are described as frequently translucent, with geodes, with colors ranging from yellow to red or grey, and mineralogically homogeneous between them. Petrographic studies highlight the presence of iron oxide accumulations and rare fossil ghosts or frequently difficult to see in thin section [@matias2016] . When identified, sponge spicules and possible rare foraminifera have been identified [@matias2012]. These cherts have also been reported as found in highly variable cobble morphologies and macroscopic traits, which is also observable through the reference samples from central Portugal hosted at LusoLit.
+
+To aid on the comparison, we compared the lithics attributed to Type 11 to hand-samples from the LusoLit lithotheque, previously collected from the Rio Maior area. Similarly, three thin sections were produced of geological samples with different macroscopic characteristics from the Central Portugal area to compare with the archaeological thin sections. Alike the archaeological thin sections from Type 11 and congruent with other studies [@matias2016], these thin sections show a massive, cryptocrystalline mudstone structure, with uncommon fossils (ghosts), commonly barely visible, iron oxides and low porosity (\<1%). From these cherts, only the dark grey nodules (RT231) showed identifiable fossils which were rare ostracods.
+
+Based on the macroscopic and petrographic similarities to the geological references from Central Portugal and congruence with previous studies from this area, we interpreted Group 11 (and sub-types) as belonging to the macroscopically variable Cretaceous cherts from the Estremaduran area in central Portugal.
+
+The peloidal/oolitic packstone cherts are not congruent with the cherts from the Algarve area, making them not local or regional. The consultation of the lithotheque hosted at UCA allowed us to identify a sub-set of cherts with similarities to those from Type 13. These cherts are massive, sub-translucent, peloidal/oolitic packstones. Allochems include very frequent peloids and ooids. The peloids are densely arranged in the samples, more or less visible depending on the alterations to the surface or the thicknes. The ooids are poorly sorted, with oval or round shapes and replaced by quartz. Uncommonly the ooids show a preserved nucleus. The presence of bioclasts varies between samples, randing between common to rare, and when present/identifiable include sponge spicules (common), foraminifera (rare to uncommon) and echinoderm spines (rare). @fig-type13-source exemplifies several of the facies identified in Type 13 cherts from the Terrace and Shelter areas (left) and matching samples from the UCA lithotheque (right). Despite the nonexistence of thin sections for comparison, the macroscopic similarities between the cherts allows us to interpret Type 13 as coming from the Andalusian region of southern Spain.
+
+Group 13B is a small group but present throughout the whole stratigraphy of the Terrace and in the Solutrean occupation of the Shelter, and with significant different characteristics from the local cherts of the Algarve region. Although its origin is unknown, when visiting the Cadiz lithotheque, we identified a small group of banded black cherts without noticeable fossils or inclusions. Despite the lack of comparative petrographic data, the macroscopic resemblances raise the possibility that Group 13B belongs to Andalusian chert formations in southern Spain.
+
+From the identified groups, only group 11F and Oolitic remain unknown. Despite the macroscopic similarities between type 11F and cherts from the Andalusian chert formations, the samples inspected with a stereomicroscope showed no visible foraminifera, especially from the ++ family. However, the archaeological thin section revealed that despite no foraminifera being visible macroscopically, they are visible under the microscope in thin section. The fact that no foraminifera are visible in the the small number of analyzed samples from the Cadiz lithotheque may simply be a result of their uncommon visibility. Despite this, given the lack of this specific fossil in the reference samples, the probable source of Group 11F remains unknown. Similarly, the black oolitic chert shows no similarities to any consulted reference material. Despite the existence of oolitic limestones in the Algarve region, no chert nodules are mentioned (++) and the visit of outcrops mentioned in the geological cartography did not allow their identification; the trade of oolitic cherts in recent prehistory may indicate however that these types of cherts are available in the landscape in long-distance (++), and their presence in Vale Boi may simply reflect similar mobility patterns.
+
+Apart from the groups common throughout the stratigraphy of the Terrace and Shelter, group GB and samples from the TL group also show no identifiable source. The exceptions are TL01, TL10-11 and TL15-16. Jasper is known in the SPZ area, from the Alentejo region to Spain, above the Algarve. Although no petrographic data is available, the macroscopic similarities between TL01 and a hand-sample hosted at Luso-lit seem to indicate that the source of this jasper is the SPZ formations. Similarly, despite different from the frequent Cretaceous nodules, the macroscopic similarities between TL10 and TL11 and specific nodules from Central Portugal in the Luso-lit lithotheque may indicate these cherts are from the Estremadura area. This difference in appearance may be due to the already mentioned variability of the nodule's macroscopic characteristics. Finally, TL15 and TL16 show macroscopic similarities to radiolarite reference samples located at the Cadiz lithotheque, which may indicate the source of these cherts is from Andalusian geological formations.
+
+## Stratigraphical distribution
+
+Chert groups are present across the stratigraphy (except for GB which appears only in level 4 and in a small number of artifacts; n=2). Different chert types were consistently used in the Terrace area throughout time, with different intensities of use. @fig-type-per-level shows the percentage of chalcedony and chert types used throughout the stratigraphy in the Terrace area of Vale Boi; this data excludes the unidentifiable and altered samples, categorized in a group named INDET. In the Solutrean and Proto-solutrean levels, local cherts make up more than \~70% of the chert. Despite this homogeneous pattern, the use of group 2 and group 7 marks significant differences between the Solutrean occupations (levels 4, 4C, and 4D) and the Proto-solutrean occupations (4E and 4E/5); in the first group the yellow/brown cherts (type 2) represent \~30% of local chert use, while in the second group, the use of type 2 diminishes drastically (\~10-15%), while Type 7 becomes the most used chert with \~38% in level 4E and \~23% in the top of level 5. For both occupations, chert non-congruent with the known local sources represent percentages lower than 30%. This pattern seems to shift in the bottom of 5 and throughout the Gravettian occupation; the use of chert local cherts drops to 45-60%, while the percentages of specific non-local chert types increase significantly, such as Type 11 and Type 13. Other non-local cherts such as the Oolitic cherts and TL categories also show smaller increases in the Gravettian occupation. As seen in previous studies, chalcedony seems to be present but always in small frequencies. Despite this, there is a small increase in the use of chalcedony in level 5 (both top and bottom), from lower than 5% in level 4E to 13.5% in top of 5, with a tendency to decrease in the older levels.
+
+```{r}
+#| label: fig-type-per-level
+#| fig-cap: "Chalcedony and chert types per level, without unidentifiable samples. Only percentages superior to the 5% threshold are presented in the figure."
+#| echo: false
+
+phase_dataset %>%
+  filter(RMTYPE != "INDET") %>% 
+  mutate(RMTYPE = factor(RMTYPE, levels = c("Chalcedony","TYPE 2", "TYPE 15", "TYPE 7",
+                                        "TYPE 12", "TYPE 13","TYPE 13B", 
+                                        "TYPE 11", "TYPE 11F","GB", "Oolitic", "TL"))) %>%
+  dplyr::group_by(Level, RMTYPE) %>% 
+  dplyr::summarise(n = n()) %>%
+  mutate(percent = n/sum(n)) %>% 
+  ggplot(aes(x=Level, y = percent, fill = RMTYPE)) +
+  geom_bar(stat = "identity", width = 0.5) +
+  scale_y_continuous(labels = scales::percent_format()) +
+  theme_minimal() + #type of theme
+  labs(x = "Level", y = NULL) +# change labels
+  guides(fill=guide_legend(title=NULL)) + # remove legend title
+  geom_text(aes(label=ifelse(percent >= 0.05, paste0(sprintf("%.1f", percent*100),"%"),"")),
+                position=position_stack(vjust=0.5), colour="white", size=3) +
+  theme(axis.title.x = element_text(size = 10, vjust = -1)) %>% 
+  scale_fill_manual(values = c("#C74B50", "#D49B54", "#911F27", "#630A10",
+                              "#FACE7F", "#845460", "#EAD3CB", "#BDC7C9",
+                              "#2B4F60", "#BDD2B6", "#798777", "#FCF0C8"))
+
+T_dataset %>%
+  filter(Z != "0") %>% 
+  filter(!Z >= "25") %>% 
+  mutate(RMTYPE = factor(RMTYPE, levels = c("Chalcedony","TYPE 2", "TYPE 15", "TYPE 7",
+                                        "TYPE 12", "TYPE 13","TYPE 13B", 
+                                        "TYPE 11", "TYPE 11F","GB", "Oolitic", "TL"))) %>%
+  filter(RMTYPE != "INDET") %>% 
+  ggplot(aes(RMTYPE, Z, color = RMTYPE)) +
+  geom_violin(trim = FALSE, scale="width", bw=0.1) + 
+  labs(title="Violin plot", 
+       subtitle="City Mileage vs Class of vehicle",
+       caption="Source: mpg",
+       x="Class of Vehicle",
+       y="City Mileage") +
+  stat_summary(fun.data=mean_sdl, geom="errorbar", color="black", width=0.2)
+  ggsave("violin_plot.png")
+
+
+T_dataset %>% 
+  filter(Z != "0") %>% 
+  filter(!Z >= "25") %>% 
+  filter(RMTYPE != "INDET") %>% 
+  mutate(RMTYPE = factor(RMTYPE, levels = c("Chalcedony","TYPE 2", "TYPE 15", "TYPE 7",
+                                        "TYPE 12", "TYPE 13","TYPE 13B", 
+                                        "TYPE 11", "TYPE 11F","GB", "Oolitic", "TL"))) %>%
+  dplyr::group_by(Z, RMTYPE) %>% 
+  dplyr::summarise(n = n()) %>%
+  ggplot(aes(x = n, y = Z)) +
+  geom_point(alpha = 0.1, color = "coral") +
+  facet_grid(cols = vars(RMTYPE)) +
+  labs(x = "Count", y = "Depth (cm)") +
+   theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+
+
+
+
+```
+
+The same raw materials found in the Terrace area are also found in the Solutrean occupation of the Shelter, albeit with some differences. Although with similar percentages to the local cherts, the use of local chert in the Shelter area is heavily dominated by the brown/yellow cherts that frequently characterize the Lower Jurassic outcrops of the Algarve; although the other macroscopic types are present but not significant. The presence of cherts not congruent with the local sources is, alike level 4, close to 25%, although dominated mostly by Type 11. Type GB is present in higher numbers than in level 4, however still representing less than 5% of the assemblage.
+
+```{r}
+#| label: fig-type-per-level_shelter
+#| fig-cap: "Chalcedony and chert types per level, without unidentifiable samples. Only percentages superior to the 5% threshold are presented in the figure."
+#| echo: false
+
+S_dataset %>%
+  filter(RMTYPE != "INDET") %>% 
+  mutate(RMTYPE = factor(RMTYPE, levels = c("Chalcedony","TYPE 2", "TYPE 15", "TYPE 7",
+                                        "TYPE 12", "TYPE 13","TYPE 13B", 
+                                        "TYPE 11", "TYPE 11F","TYPE GB", "Oolitic", "TL"))) %>%
+  dplyr::group_by(AREA, RMTYPE) %>% 
+  dplyr::summarise(n = n()) %>%
+  mutate(percent = n/sum(n)) %>% 
+  ggplot(aes(x = AREA, y = percent, fill = RMTYPE)) +
+  geom_bar(stat = "identity", width = 0.5) +
+  scale_y_continuous(labels = scales::percent_format()) +
+  theme_minimal() + #type of theme
+  labs(x = "Level", y = NULL) +# change labels
+  guides(fill=guide_legend(title=NULL)) + # remove legend title
+  geom_text(aes(label=ifelse(percent >= 0.05, paste0(sprintf("%.1f", percent*100),"%"),"")),
+                position=position_stack(vjust=0.5), colour="white", size=3) +
+  theme(axis.title.x = element_text(size = 10, vjust = -1)) %>% 
+  scale_fill_manual(values = c("#C74B50", "#D49B54", "#911F27", "#630A10",
+                              "#FACE7F", "#845460", "#EAD3CB", "#BDC7C9",
+                              "#2B4F60", "#BDD2B6", "#798777", "#FCF0C8"))
+  
+
+```
+
+```{r}
+#| label: fig-type13-source
+#| fig-cap: Comparison between chert samples of different facies from Type 13 of the Terrace area (left) and samples from the Universidad de Cádiz lithotheque.
+
+knitr::include_graphics(here::here("analysis/figures/Terrace_UCA_comparison.png"))
+
+```
+
+```{r}
+#| label: tbl-TL
+#| tbl-cap: A table of TL
+
+TL_table_T <- phase_dataset %>% 
+  filter(RMTYPE=="TL") %>% 
+  select("Level", "SUBTYPE")
+TL_table_S <- S_dataset %>% 
+  filter(RMTYPE=="TL") %>% 
+  mutate_at("LAYER", ~replace_na(.,"Shelter")) %>% 
+  select("LAYER", "SUBTYPE") %>% 
+  rename(Level = LAYER)
+
+TL_table <- rbind(TL_table_T, TL_table_S)
+TL_table <- TL_table %>% 
+  tabyl(SUBTYPE, Level) %>% 
+  adorn_totals(c("row","col"))
+
+```
+
+# Discussion
+
+# Conclusion
+
+# Acknowledgements
+
+<!-- The following line inserts a page break  -->
+
+\newpage
+
+# References
+
+<!-- The following line ensures the references appear here for the MS Word or HTML output files, rather than right at the end of the document (this will not work for PDF files):  -->
+
+::: {#refs}
+:::
+
+\newpage
+
+### Colophon
+
+This report was generated on `r Sys.time()` using the following computational environment and dependencies:
+
+```{r}
+#| label: colophon
+#| cache: false
+
+# which R packages and versions?
+if ("devtools" %in% installed.packages()) devtools::session_info()
+```
+
+The current Git commit details are:
+
+```{r}
+# what commit is this file at? 
+if ("git2r" %in% installed.packages() & git2r::in_repository(path = ".")) git2r::repository(here::here())  
+```

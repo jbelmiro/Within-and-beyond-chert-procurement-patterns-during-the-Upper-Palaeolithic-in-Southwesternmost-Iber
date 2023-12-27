@@ -1,0 +1,293 @@
+---
+title: "Terrace and shelter lithotype complete description"
+author:
+  - Jane Doe:
+      correspondence: "yes"
+      email: janedoe@fosg.org
+      orcid: 0000-0003-1689-0557
+      institute:
+        - fosg
+        - fop
+  - John Q. Doe:
+      institute: fosg
+      orcid: 0000-0003-1689-0558
+  - Peder Ås:
+      institute: fosg
+      orcid: 0000-0003-1689-0559
+  - Juan Pérez:
+      orcid: 0000-0003-1689-0551
+      institute:
+        - name: Acme Corporation
+  - Max Mustermann:
+      orcid: 0000-0003-1689-0552
+title-block-published: "Last updated"  
+format: 
+  docx:
+    reference-doc: "../templates/template.docx" # Insert path for the DOCX file
+execute:
+  echo: false
+  warning: false
+  message: false
+  comment: "#>"
+  fig-path: "../figures/"
+  fig-dpi: 600
+filters:
+  - ../templates/scholarly-metadata.lua
+  - ../templates/author-info-blocks.lua
+  - ../templates/pagebreak.lua
+bibliography: ../paper/references.bib
+csl: "../templates/journal-of-archaeological-science.csl" # Insert path for the bib-style
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  echo = FALSE,
+  comment = "#>",
+  fig.path = "../figures/",
+  dpi = 300,
+  out.width = "100%",
+  fig.align = "center"
+)
+```
+
+# Chert group description
+
+## Group 2
+
+Group 2 corresponds to a massive micro-cryptocrystalline quartz from a marine environment and shelf depositional environment. The macroscopic and petrographic association of this group with the local cherts from the west Algarve basin as well as the identified fossils locate their epoch and stage in the Lower Jurassic, Pliensbachian.
+
+It is a fine-grained chert, with a conchoidal fracture and good quality (see the Data dictionary for macroscopic analysis document for details on the attribution of quality to raw materials used in this analysis). It is macroscopically heterogeneous in color, patterns, and textural characteristics; due to this, initially, two sub-groups were created: single-color @fig-type2-variability and multiple-color () groups.
+
+The single-color group's main colors are very pale yellow (10YR 8/4), yellow (10YR 8/6), grayish brown (10YR 5/2) and white (2.5Y 8/1). The color variability and presence of allochems and bioclasts produce macroscopic patterns such as splotched, speckling, and laminations. The structure is homogeneous. The artifacts have medium to dull luster; some samples show shiny luster, however, this may be related to alterations to the surface. Translucency is opaque and the feel is smooth to semi-smooth. The multiple-color group shows a variable color distribution: colors are very pale yellow (10YR 8/4), yellow (10YR 8/6), pale red (2.5YR 6/2), and white (2.5Y 8/1). The color variability creates macroscopic patterns such as splotched, broad mottling, speckling, and laminations (Fig. \@ref(fig:type2Bvariability)). The structure is similar to group single-color, although slightly heterogeneous as translucency varies from opaque to sub-translucent, with light passing through at around 3.5 mm, limited to the white areas.
+
+For both sub-groups, whenever present, the cortex can be rounded or irregular and from an outcrop, varying between ++ to ++ mm in thickness, frequently with a sharp transition.
+
+Inclusions include black speckles, which may be organics or iron oxides, and red speckles which may be iron oxides. Bioclasts include white, round speckles, spicule-shaped skeletal remains, monaxon sponge spicules, bivalve shells (rare, hereon r) replaced by quartz or chalcedony, and rarely triaxon sponge spicules. In the single-color group fossil remains range from uncommon to frequent, while in the multiple-color group fossils range from uncommon to very frequent; in all cases, the bioclasts are frequently unidentifiable.
+
+In the shelter area, the variety of identified fossils also includes possible ostracods (uncommon, hereon u), a possible small foraminifer (Fig. \@ref(fig:shelter2fossils) d), and echinoderm spines (Fig. \@ref(fig:shelter2fossils) a-c).
+
+Five thin sections were produced to account for the macroscopic variability of this group. All thin sections show a wackestone texture and massive microstructure. Micro-cryptocrystalline quartz represents more than 90% of the orthochem composition (between 93 to 99%), while other orthochems are present in lower frequencies: macrocrystalline quartz (1-5%) as grains scattered in the sample or replacing fossils and fibrous chalcedony (1-5%) replacing fossils. Accessory minerals are also present in some samples: dolomite, micrite, and mica (muscovite). Allochems present are oxide patina and grains (common, hereon c), unidentifiable opaques (common to very frequent, hereon vf), and bioclasts (vf). All samples have very frequent unidentifiable fossils. In samples from multiple-color group, although in lesser frequencies, monaxon sponge spicules (H21-3095) and a possible triaxone sponge spicule (H21-4234) are identifiable. All samples show vug-type porosity between 1-5%.
+
+```{r}
+#| label: fig-type2-variability
+#| fig-cap: Chert macroscopic variability within group 2 (single color).
+#| fig-width: 8
+
+knitr::include_graphics("../figures/SOM/Group2_macromeso_b.png")
+
+```
+
+```{r type2Bvariability, echo=FALSE, fig.cap="Chert macroscopic variability within group 2 (multiple color).", out.width = '80%'}
+
+knitr::include_graphics("../figures/SOM/Group2B_macromeso.png")
+
+```
+
+```{r shelter2fossils, echo=FALSE, fig.cap="Identified fossil variability from group 2 from the Shelter area. Fossils present in the figures are: a-b, crinoid stem section with 4 series; c, cross-section of crinoid columnal with pentagonal stem plate; d, possible foraminifer (black arrow).", out.width = '80%'}
+
+knitr::include_graphics("../figures/SOM/SHELTER2_FOSSILS.png")
+
+```
+
+A group of samples was individualized from group 2 due to color and textural differences (named 2R during the analysis process). These are interpreted as alterations to group 2 cherts, possibly due to heat, although further experimentation is needed. The color distribution is variable and it has a heterogeneous structure, possibly due to the alterations. The colors are red (10R 5/6), light yellowish brown (10YR 6/4), and pinkish-gray (5YR 7/2). It shows shiny to dull luster and semi-smooth to rough feel.
+
+Whenever present, cortex seems to be from an outcrop, rounded, with thicknesses ranging from 3.8 mm to 0.5 mm, with a sharp transition.
+
+Inclusions seem to be iron oxides, which create speckling patterns. Bioclasts include 1) frequently poorly-preserved spicules, mostly monaxon, although some tetraxon spicules may be present; 2) white, round fossils; 3) uncommon, unidentifiable fossils replaced by chalcedony or quartz. In general, the alterations seem to exacerbate the visibility of the iron oxides and skeletal remains.
+
+```{r type2Rvariabilitymeso, echo=FALSE, fig.cap="Archaeological samples attributed to Type 2R. ", out.width = '80%'}
+
+knitr::include_graphics("../figures/SOM/Group2R_macromeso-01.png")
+
+```
+
+A thin section was made to confirm whether the color and textural differences are solely macroscopic, and do not represent a different petrographic type. The sample (H19-2426 from Level 4D) shows no outstanding differences from the samples from group 2.
+
+## Group 15
+
+Group 15 corresponds to a massive micro-cryptocrystalline quartz from a marine environment and shelf depositional environment. The macroscopic and petrographic association of this group with the local cherts from the west Algarve basin as well as the identified fossils locate their epoch and stage in the Lower Jurassic, Pliensbachian.
+
+Group 15 is a fine to medium chert, with a conchoidal fracture and good quality. The color distribution is uniform, despite subtle changes to gray. The colors are light gray (10R 7/1) and reddish gray (10YR 6/1). It has medium to dull luster and is sub-translucent to opaque, with light passing through only in the very fine parts (\~1.4 mm). The splotches and lamination adjacent to the cortex seem to be sub-translucent as well, showing more translucency than the chert itself. The feel is semi-smooth and the patterns are splotches, speckling, concentric lamination (limited to a small number of samples), and fine lamination (found only between the cortex and the chert).
+
+Whenever present, the cortex seems to be from an outcrop and rounded. Despite the brown coloration possibly due to post-depositional alterations, the original color is white. Cortex thickness ranges from 3.8 mm to 1.2 mm, and has a sharp transition. One single sample from Level 6 shows a gradual cortex transition. Although the original morphology of this chert is unknown, the presence of cortex on two opposed extremities in a sample (H19-3196, \@ref(fig:type15variability) a) indicates the chert can be found in irregularly rounded nodules within the parent rock.
+
+Petrographically, this chert is a massive wackestone, composed mostly of micro-cryptocrystalline quartz (96%) with accessory macrocrystalline quartz and fibrous chalcedony. Allochems are iron oxides (vf), unidentified opaques (u) and bioclasts. Porosity is low (\<1%).
+
+Allochems such as iron oxides or opaques are also visible macroscopically as black speckling or rare red speckling. The bioclasts are unidentifiable, due to poor preservation and are replaced by microcrystalline quartz or fibrous chalcedony. The common round unidentified fossils can be seen only under the stereomicroscope and in the thin section. The uncommon long, spicule-like fossils can be seen both macroscopically and in the thin section. The presence of sponge spicules, however, is more obvious in artifacts from Level 4 and 4D.
+
+```{r type15variability, echo=FALSE, fig.cap="Chert macroscopic variability within group 15.", out.width = '80%'}
+
+knitr::include_graphics("../figures/SOM/Group15_macromeso.png")
+```
+
+## Group 7
+
+Group 7 corresponds to a massive micro-cryptocrystalline quartz from a marine environment and shelf depositional environment. The macroscopic and petrographic association of this group with the local cherts from the west Algarve basin locate their epoch and stage in the Lower Jurassic, Pliensbachian.
+
+This chert is fine-grained, with a conchoidal fracture and good quality. It is macroscopically homogeneous throughout the archaeological layers, although layer 4 shows less homogeneity between the artifacts, possibly due to post-depositional alterations.
+
+Its heterogeneous structure has two types of fabrics with different macroscopic characteristics: grey (G) and white (W) fabric. The grey fabric corresponds to the interior of the nodule. It is light gray (5Y 7/1, 7/2), light olive gray (5Y 6/2), and gray (5Y 6/1, 5/1), sub-translucent (light passing through in the thin areas, around 3.2 mm thickness) and has medium luster. The visible inclusions are limited to a single mica mineral (\~50 μm), white flecks (concentrated near the outer edges of white fabric), and speckles, which may be circular, unidentifiable fossil remains, and rare spicule-like remains. In layer 6 spicule-shaped remains are uncommon. The white fabric appears in two areas in the nodules: 1) in the outer edge, surrounding the grey fabric; 2) within the grey fabric, where it creates splotched and broad mottling patterns. This fabric is white (5Y 8/1, 10YR 8/1) and very pale brown (10YR 8/2, 8/4), opaque and dull. In the pale brown splotches, inclusions are yellow speckles (possibly iron oxides, Fig. \@ref(fig:type7variability) a). The white fabric generally has barely visible fossils and uncommon unidentifiable fossils replaced by chalcedony or quartz.
+
+Whenever present, the cortex seems to be from an outcrop, mostly rounded, although a sample from layer 5 shows a thick (30 mm) irregular cortex. The cortex is white or light brown with a sharp transition between 1.4 mm to 10 mm thick. The morphology of the cortex in fully cortical samples (i.e., I18-2099; \@ref(fig:type7variability) d) may indicate that this chert is originally available as irregular (slightly oval) nodules within the parent rock.
+
+Petrography results show this group is a massive wackestone composed mostly of micro-cryptocrystalline quartz (98%), with accessory macrocrystalline quartz and fibrous chalcedony. Allochems are iron oxides (c), opaques (vf), and bioclasts (c). Despite the macroscopically visible spicule-like white shapes, these fossils are not apparent in thin section. The porosity is low (1%).
+
+```{r type7variability, echo=FALSE, fig.cap="Chert macroscopic variability within group 7.", out.width = '80%'}
+
+knitr::include_graphics("../figures/SOM/Group7_macromeso.png")
+
+```
+
+## Group 12
+
+Group 12 corresponds to a massive and banded micro-cryptocrystalline quartz from a marine environment and possibly a shelf depositional environment. The macroscopic and petrographic association of this group with the local cherts from the west Algarve basin, as well as the large size of the nodules and presence of parent rock, allow us to interpret this chert as local, possibly the Lower Jurassic although the exact outcrop is not identifiable.
+
+This chert is fine to medium-grained, with a conchoidal fracture (albeit uneven at times). The quality is acceptable to low due to the lack of homogeneity and frequent fractures, as well as a coarser fabric in certain areas. It has a heterogeneous structure, frequently showing different characteristics within one single artifact. The colors are gray (5Y 6/1), light brownish gray (10YR 6/2), and pale brown (10YR 6/3). Fresh surfaces display slightly different colors: light gray (2.5Y 7/1) and gray (2.5Y 6/1). It has medium to dull luster, coarse to medium feel, and is opaque to sub-translucent; in the sub-translucent areas, light passes through to max. 4 mm of thickness. The group displays frequent patterns, mostly related to this heterogeneity, but also due to patination; these are splotched, banded, broad mottling, and speckling.
+
+The cortex is from an outcrop, frequently rounded, but also irregular. Based on reference samples, the chert seems to be enclosed within the parent rock as irregular or tabular nodules (Fig. \@ref(fig:type12variability) b). The cortex is thin (\~0.5 mm), with a sharp transition, and some artifacts show chunks of the parent rock attached to the cortex (Fig. \@ref(fig:type12variability) a).
+
+Based on the presence of bands, two sub-groups were created: 12 (Fig. \@ref(fig:type12variability) a-c) and 12B (Fig. \@ref(fig:type12variability) d), the latter characterized by banding. Two thin sections were produced to characterize the macroscopic variability. The petrographic results show that group 12 is a wackestone, with a massive (group 12) or banded (group 12B) microstructure. They are mainly composed of micro-cryptocrystalline quartz (75% and 72%, respectively) and micrite (20% in both), and in smaller percentages macrocrystalline quartz and fibrous chalcedony. Allochems are unidentified opaques (vf), iron oxides (u), and bioclasts (c). The sub-groups show larger differences in the porosity, with 12 showing 1% vug porosity while 12B shows 10% vug and moldic porosity, concentrated in the banded areas with more opaques.
+
+Bioclasts are uncommon both macroscopically and in thin section: sponge spicules and round, unidentifiable fossils can be seen by the naked eye or under the microscope. In thin section however, several other unidentified fossils are present, some of which may be an ostracod (both in 12 and 12B) and a foraminifer (12).
+
+```{r type12variability, echo=FALSE, fig.cap="Chert macroscopic variability within group 12.", out.width = '80%'}
+
+knitr::include_graphics("../figures/SOM/Group12_macromeso.png")
+
+```
+
+## Group 11
+
+Group 11 corresponds to a massive cryptocrystalline quartz with mudstone texture. The lack of local similar cherts, as well as identifiable fossils does not allow us to attribute a depositional environment or epoch/stage. However, rare spicules were identified; given the exclusivity of sponge's (Porifera) living environment to be marine [@flugelMicrofaciesCarbonateRocks2010], group 11 may be considered a chert formed in a marine environment.
+
+This chert is fine-grained and translucent (light passing through at 17 mm of thickness), with a conchoidal fracture and good quality. The structure is heterogeneous, with shiny to medium luster and semi-smooth to smooth feel. This group of translucent cherts shows a variety of colors: grayish brown (2.5Y 5/2), light brownish gray (10YR 6/2), brown (7.5 YR 4/2), reddish brown (2.5YR 4/3) and dark gray (10YR 4/1). The color distribution is variable; in some cases, the color seems to be related to the thickness of the sample; thicker parts show darker colors, while thinner parts show lighter colors. Alterations and inclusions also impact the color distribution and the discernment of natural versus the altered color. Alterations such as patina also seem to impact the translucency, which becomes opaque, and the luster, which becomes medium to dull.
+
+Patterns are rare, however, whenever present they are laminated, with flecks, and splotches. The flecks and splotches are characterized by a semi-smooth feel, sub-translucency, and lighter color than the chert.
+
+In unaltered samples, bioclasts are rare.
+
+The cortex is rounded, from an outcrop source, and rarely rounded and smooth like a pebble. It is frequently around 0.5 to ++ mm thick and the transition is gradual.
+
+```{r typeCPTvariability, echo=FALSE, fig.cap="Chert macroscopic variability within group 11.", out.width = '80%'}
+
+knitr::include_graphics("../figures/SOM/GroupCPT_macromeso.png")
+
+```
+
+### Sub-group LLB
+
+A sub-group named LLB (corresponding to the light brownish gray colors) was created during the macroscopic analysis process due to the presence of a group of artifacts with homogeneous characteristics (and refits) within the previous group.
+
+This sub-group is characterized by white (10YR 8/1), light brownish gray (10YR 6/2), and brown (7.5YR 5/2) colors. It has a heterogeneous structure, with two fabrics: white and brown. The white fabric is located by the cortex and is opaque. It gradually turns to a light brownish gray which is sub-translucent (light passing through until \~10 mm), and to a brown which is translucent. The luster ranges from medium to dull, the feel is smooth and the grain is fine. The fracture is conchoidal and the quality is good. Patterns are laminated, splotched, and speckled. The patterns occur on the brown fabric, in a light brownish-gray color.
+
+The cortex is rounded, from an outcrop source. It is around 0.5 to 1 mm thick and the transition is gradual.
+
+Uncommon oval skeletal remains are visible but are replaced by quartz. No other allochems or bioclasts are visible.
+
+```{r typeLLB11Evariability, echo=FALSE, fig.cap="Chert macroscopic variability within the sub-group LLB (a-b) and 11E (c-d).", out.width = '100%'}
+
+knitr::include_graphics("../figures/SOM/groupLLB_11E_variability.png")
+
+```
+
+### Sub-group 11E
+
+Similarly to the previous sub-group, a sub-group named 11E was created during the macroscopic analysis process due to the presence of a group of artifacts with homogeneous characteristics (and refits).
+
+This sub-group is characterized by a heterogeneous structure. The colors are brown (10YR 5/3), gray (2.5Y 5/1), light gray (10YR 7/2) and white (10YR 8/1) The translucency is variable, some areas are translucent (light passing through at 8 mm of thickness), while the splotches are sub-translucent. The luster ranges from shiny to medium, the feel is smooth and the grain is fine. The fracture is conchoidal and the quality is acceptable, due to the presence of fractures. Patterns are splotches, broad mottling, spots, speckling, and laminated.
+
+Whenever present, cortex is rounded, from an outcrop source. Its thickness ranges from 0.5 to 0.7 mm and the transition is sharp.
+
+Identifiable fossils are rare, and limited to a possible bivalve fragment. Uncommon, oval-shaped bioclasts are also visible, however, these are always replaced by quartz. The white splotches show a concentration of spicule-like shapes, however, these may be due to patina.
+
+Five thin sections were produced to better characterize the macroscopic variability of this group and sub-groups.The results show no outstanding differences between the samples and sub-groups. The petrographic analysis shows the samples are characterized by a mudstone texture and massive microstructure. It is mainly composed of cryptocrystalline quartz (between 95-97% in the samples, with one exception where it represents 91%), with accessory fibrous chalcedony found replacing fossils or filling fractures, and in some samples macrocrystalline quartz, microcrystalline quartz and micrite/sparite. Allochems are opaques (u), iron oxides (u) and bioclasts (r/u). Oxides and opaques are often concentrated in the edges of the sample, and may be related to post-depositional processes. Bioclasts are unidentifiable and poorly preserved, replaced by fibrous chalcedony and rarely by microcrystalline quartz. In a single sample (I20-3689) sponge spicules were identified. However, in sample H19-4074 (sub-type 11E), the absence of spicules or spicule-like shapes in the thin section suggests that they are an effect of white patina on the surface of the samples. Porosity is present between \<1-1%, of vug-type when identifiable.
+
+## Group 11F
+
+Group 11F corresponds to a massive micro-cryptocrystalline quartz from a marine environment and shelf/platform depositional environment. Identified and well-preserved fossils are foraminifera from the Pfenderenidae family, which are larger benthic foraminifera from marine environments. The association of these foraminifera indicates this chert formed from sediments deposited possibly between the Jurassic to the Cretaceous.
+
+Macroscopically, this group is characterized by gray colors (Gley 1 6/ and 5/) and a white (10YR 8/1) area, frequently at the center of the sample, which seems to be a weathering rind. However, the white broad mottling highlights the presence of very frequent bioclasts (\@ref(fig:type11Fvariability)). The translucency is variable: the grey areas are sub-translucent (light passing through at 2.5/3 mm of thickness), while the broad mottling is opaque; due to the presence of this sort of alteration in all artifacts from this group, a correct measurement of translucency was not possible. The luster ranges from shiny to medium, the feel is smooth and the grain is fine. The fracture is conchoidal and the quality is good. Patterns are splotches, broad mottling, spots, and speckling.
+
+Whenever present, cortex is rounded, from an outcrop source. Its thickness ranges from 0.5 to 0.7 mm and the transition is sharp.
+
+Petrographically, this group is a packstone (mudstone texture close to the edges) with a massive microstructure. It is composed of 97% micro-cryptocrystalline quartz. Other orthochems are macrocrystalline quartz and fibrous chalcedony, found mostly replacing fossils. Allochems are bioclasts. Other minerals include uncommon iron oxides. The porosity is of vug type (3%).
+
+Fossil content is very frequent, albeit mostly unidentifiable and poorly preserved. Petrographic results show these fossils are replaced by macrocrystalline quartz, microcrystalline quartz and fibrous chalcedony. Larger unidentifiable fossils (\~200 μm; r) are frequently replaced by several generations of microcrystalline quartz, macrocrystalline quartz, and fibrous chalcedony. Identified fossils are sponge spicules (r; visible only as ghosts and poorly preserved), ostracods (r) with some degree of preservation, and common small foraminifera (100 μm) of differing preservation degrees (Fig. \@ref(fig:11Ffossils)). Identifiable foraminifera are rare and from the Pfenderenidae family (Fig. \@ref(fig:11Ffossils), black arrows); these have been identified both through thin section (Fig. \@ref(fig:11Ffossils) d) and macroscopically (Fig. \@ref(fig:11Ffossils) a, c). They are well-preserved, replaced by microcrystalline quartz, and measure around 500 μm.
+
+```{r type11Fvariability, echo=FALSE, fig.cap="Chert macroscopic variability within group 11F.", out.width = '80%'}
+
+knitr::include_graphics("../figures/SOM/Group11F_macromeso.png")
+
+```
+
+```{r 11Ffossils, echo=FALSE, fig.cap="Foraminifera from Group 11F from the Terrace and Shelter area. Figures a-c were obtained through a stereomicroscope; figure d is a thin section in plane polarized light. Black arrows: foraminifera from the Pfenderenidae family; White arrow: other unidentified foraminifera.", out.width = '80%'}
+
+knitr::include_graphics("../figures/SOM/group11F_FOSSILS.png")
+
+```
+
+## Group 13
+
+Group 13 is a massive micro-cryptocrystalline, peloidal/oolitic packstone, from a marine environment and possibly a high-energy, shallow depositional environment, due to the type, sorting, and preservation conditions of the ooids.
+
+It is a fine-grained chert, with a conchoidal fracture. The quality is good. It has a heterogeneous structure, with two fabrics: 1) white fabric; 2) grey fabric. The colors are . The white fabric is characterized by dull luster, opaque translucency, and semi-smooth feel. The grey fabric varies between medium to dull luster and it is opaque to sub-translucent, with light passing through at around 1.9 mm of thickness in some areas. The feel is semi-smooth and the patterns are splotched, speckled, and laminated dotted horizontally.
+
+The cortex is from an outcrop, rounded, and varying between a minimum of 3.4 mm of thickness and a maximum of 12 mm of thickness. The cortex transition is frequently sharp, although some samples show a gradual transition.
+
+This group shows several facies, with different types and concentrations of allochems and bioclasts (Fig. \@ref(fig:type13facies)). Facies 01a shows a wackestone to packstone texture, with visible small fossils (very frequently below 50 μm). Fossils include round white fossils, with grey or non-colored walls; sponge spicules, monaxon pointed at one end or tetraxon. A possible bivalve shell replaced by quartz or chalcedony was identified on a single sample. Other fossils are unidentifiable, but very frequently they are round and light, scattered within the chert. Facies 01b is similar to 01a, but composed mainly of peloids or unpreserved ooids, with uncommon presence of spicules. Facies 01c shows a decrease in the visible fossils (wackestone texture), and identifiable fossils are spicules and small round fossils with walls. Facies 02 is characterized by a packstone texture, composed mostly of larger (\~200-500 μm, uncommonly 1 cm) round or oval fossils, white or grey), completely or partially replaced by quartz or chalcedony. The smaller round fossils with walls present in Facies 01 are uncommon. Due to poor preservation, these fossils are unidentifiable. Facies 03 is mostly white, with faint round shapes; this facies is interpreted as a white patinated area of both Facies 01 and 02. Facies 04 is characterized by a packstone texture, and composed of ooids (\~50-200 μm, uncommonly 500 μm), which are completely or partially replaced by quartz and chalcedony. In this facies, the chert is light (white or light grey) and it seems to be sub-translucent. Fossils seen in other facies are not visible.
+
+The petrography results for a sample with Facies 01a and 01b (L19-64) show this chert has a massive microstructure and packstone texture. It is composed mainly of micro-cryptocrystalline quartz (80%), fibrous chalcedony (10%), and micrite (10%). Allochems are opaques (u), iron oxides (vf), ooids (vf) and peloids (vf). The ooids are poorly preserved and only uncommonly show concentric lamellae in plane polarized light. Unlike macroscopical observations, bioclasts under the thin section are all unidentifiable, although rare fossils may be bivalve shells. Porosity is vug (10%).
+
+```{r type13variability, echo=FALSE, fig.cap="Chert macroscopic variability within group 11F.", out.width = '80%'}
+
+knitr::include_graphics("../figures/SOM/Group13_macromeso.png")
+
+```
+
+```{r type13facies, echo=FALSE, fig.cap="Several fossil facies within Type 13.", out.width = '80%'}
+
+knitr::include_graphics("../figures/SOM/GROUP13_facies-01.png")
+```
+
+## Type 13B
+
+Group 13B corresponds to a banded micro-cryptocrystalline quartz/micrite peloidal packstone.
+
+It is fine-grained with a conchoidal fracture. The quality is good. It has a heterogeneous structure and is characterized by a variable color distribution: it shows a horizontal laminated and finely laminated pattern, with gray (5Y 5/1) and dark gray (5Y 4/1) bands intercalated with light gray (5Y 6/1) and light olive gray (5Y 6/2) bands. This chert varies between dull, medium and shiny luster, although this variation may be related to post-depositional alterations; samples with little to no alterations show mostly a medium luster. The translucency is opaque and the feel is semi-smooth.
+
+Whenever present, the cortex is rounded (from an outcrop source), and is generally thin, with a min. thickness of 0.1 mm and a max. thickness of 2.5 mm. It is characterized by a sharp transition. In specific samples (i.e., I21-3546, \@ref(fig:type13variability) a) cortex is present on two parallel planes of the sample (parallel to the laminations), which indicates the chert was originally available in bedded layers. In this case, the sample indicates a bed thickness of at least \~19 mm in that particular area of the outcrop.
+
+Petrographically this chert is a banded packstone (banding of sedimentary origin), composed mostly of micro-cryptocrystalline quartz (48%), micrite (40%), dolomite (10%), and accessory fibrous chalcedony and mica (muscovite). Allochems are peloids (vf), bioclasts (vf), iron oxides (u), and opaque minerals (vf). Porosity is low (1%). The bioclasts are all unidentifiable and only visible in thin section.
+
+```{r type13Bvariability, echo=FALSE, fig.cap="Chert macroscopic variability within group 13B.", out.width = '80%'}
+
+knitr::include_graphics("../figures/SOM/Group13B_macromeso.png")
+
+```
+
+## Oolitic chert
+
+This group is an oolitic packstone, massive micro-cryptocrystalline micrite/quartz from a marine environment and possibly a high-energy, shallow depositional environment, due to the type, sorting, and preservation conditions of the ooids.
+
+Its heterogeneous structure has two types of fabrics with different macroscopic characteristics: brown and black fabric. The brown fabric is pale brown (10YR 6/3) and light yellowish brown (10YR 6/4), opaque, and shows medium to dull luster. The black fabric is black (7.5YR 2.5/1), shiny, and sub-translucent (light passing through in the thin areas, around 1 to 2 mm thickness). It corresponds to the fabric which creates horizontal laminated patterns within the brown fabric (Fig. \@ref(fig:ooiliticvariability)c). This chert is fine-grained with a conchoidal fracture. The quality is acceptable since it has fine granularity and a smooth feel, but shows natural fractures and occasional inclusions, such as macrocrystalline quartz or chalcedony veins that may impact the knapping.
+
+The cortex is difficult to identify since it is similar to the brown fabric, highly altered, and with a gradual transition. Whenever present, it is from an outcrop and shows a maximum thickness of 3.8 mm.
+
+Petrographically this group is a packstone with a massive microstructure. The chosen sample for thin section is composed of 35% micro-cryptocrystalline quartz, 53% micrite, 9% macrocrystalline quartz, and accessory fibrous chalcedony (filling fractures) and mica; the percentages of quartz and micrite might be related to the amount of fabrics present in the artifacts. Allochems are common iron oxides and very frequent ooids. Bioclasts are rare, poorly preserved and replaced by quartz; they occur between the ooids and with long, thin shapes. The porosity is intraparticle and vug (10%).
+
+The ooids are distributed homogeneously across the sample (although clearly macroscopically visible in the brown fabric) and are highly abundant and concentrated. They are poorly sorted, varying between 500 and 20 μm. They show round to elliptical shapes, and their preservation is variable: some ooids show a poorly preserved micritic structure, while others show concentric laminae structures around a round nucleus [@flugelMicrofaciesCarbonateRocks2010], pp. 144\]. When preserved, the nucleus represents half the width of the ooid and the cortex is normal.
+
+```{r ooiliticvariability, echo=FALSE, fig.cap="Chert macroscopic variability within the Oolitic chert group.", out.width = '80%'}
+
+knitr::include_graphics("../figures/SOM/oolitic_macromeso.png")
+
+```
+
+## Trace lithotypes
+
+### TL01
+
+# References
