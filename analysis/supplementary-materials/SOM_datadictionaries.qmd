@@ -1,0 +1,51 @@
+---
+title: "Data dictionaries"
+author:
+  - Jane Doe:
+      correspondence: "yes"
+      email: janedoe@fosg.org
+      orcid: 0000-0003-1689-0557
+      institute:
+        - fosg
+        - fop
+  - John Q. Doe:
+      institute: fosg
+      orcid: 0000-0003-1689-0558
+  - Peder Ås:
+      institute: fosg
+      orcid: 0000-0003-1689-0559
+  - Juan Pérez:
+      orcid: 0000-0003-1689-0551
+      institute:
+        - name: Acme Corporation
+  - Max Mustermann:
+      orcid: 0000-0003-1689-0552
+title-block-published: "Last updated"  
+format: 
+  pdf:
+    classoption: landscape
+    reference-doc: "../templates/template.docx" # Insert path for the DOCX file
+execute:
+  echo: false
+  warning: false
+  message: false
+  comment: "#>"
+  fig-path: "../figures/"
+  fig-dpi: 600
+filters:
+  - ../templates/scholarly-metadata.lua
+  - ../templates/author-info-blocks.lua
+  - ../templates/pagebreak.lua
+bibliography: ../paper/references.bib
+csl: "../templates/journal-of-archaeological-science.csl" # Insert path for the bib-style
+---
+
+# 1. Data dictionaries
+
+## 1.1. Group characterization
+
+## 1.2. Single characterization
+
+## 1.3. Petrographic characterization
+
+# 2. References
