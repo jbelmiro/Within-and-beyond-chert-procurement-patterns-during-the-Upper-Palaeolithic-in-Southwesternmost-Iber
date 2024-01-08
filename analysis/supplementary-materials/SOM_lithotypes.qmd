@@ -288,6 +288,36 @@ knitr::include_graphics("../figures/SOM/oolitic_macromeso.png")
 
 ## Trace lithotypes
 
-### TL01
+**TL01 - Jasper.** This chert is a jasper, with a massive microstructure, mudstone texture and red coloration, with frequent fractures filled with colorless, translucent fibrous chalcedony. The chert is opaque while the chalcedony is translucent. There are no visible allochems and the samples show no cortex.
+
+**TL02 - Orange chalcedony.** Fibrous chalcedony, without visible allochems. Good quality, differing from the group of white/translucent chalcedony due to its color. Translucent and without cortex.
+
+**TL03 - Massive chert with uncommon spots.** This chert is a massive mudstone, with uncommon allochems limited to uncommon dark spots which may be iron oxides. It is opaque and without cortex.
+
+**TL04 - Massive chert with inclusions and fractures.** Yellow, massive wakestone chert, with common allochems which are probably large, unidentifiable fossils and uncommon iron oxides. It has frequent fractures filled with fibrous chalcedony, is sub-translucent and with no cortex.
+
+**TL05 - Banded/massive chert.** This chert shows two samples, with massive and laminated microstructure variations. The laminations seem to be of ++ origin. They are grey mudstones, with uncommon allochems which are opaques creating speckling patterns. It is sub-translucent and without cortex.
+
+**TL06 - Sorted oolitic chert.** Massive, oolitic packstone. Allochems are ooids which are distributed homogeneously, highly abundant and concentrated. The ooids are well-sorted, normal, small (\~200-220 μm) and round, with differentiated walls and nucleus. The nucleus corresponds to half the width of the ooid [@flugelMicrofaciesCarbonateRocks2010]. The chert is sub-translucent and without cortex. It is distinguished from the other oolitic cherts by the small, well-sorted ooids.
+
+**TL07 - Laminated (dendritic) chert.** Massive/banded chert with uncommon allochems, which are large white splotches, possibly unidentifiable fossils. The color variations and banding may be due to iron oxide concentrations. It is sub-translucent and without cortex.
+
+**TL08 - Colorless, mudstone chert.** Massive mudstone without bioclasts. It is translucent and without cortex.
+
+**TL09 - Chalcedony with mossy inclusions.** Fibrous chalcedony, with massive microstructure and packstone texture. Allochems include unidentified orange and red "moss"-like inclusions. It is translucent and without cortex.
+
+**TL10 - Massive chert with oxides.** Massive mudstone, with common allochems which are orange iron oxides in speckling or laminated patterns. It is sub-translucent and with cortex. Shows similarities to a nodule from the Rio Maior area (central Portugal) from the LusoLit lithotheque.
+
+**TL11 - Banded, translucent chert.** Banded mudstone without inclusions. It is translucent, and shows a cortex or alteration rind. Shows similarities to nodules from the Rio Maior area.
+
+**TL12 - Massive, oolitic packstone chert.** This chert is completely white and translucent, with ooids which are distributed homogeneously, highly abundant, but poorly preserved and poorly sorted. The ooids are not visible under the naked eye or hand lens, and can only be identified under the stereomicroscope. No cortex.
+
+**TL13 - Banded, translucent chert.** Banded mudstone without inclusions. It is translucent, without cortex but with parent rock attached. The top laminations may be due to the concentration of iron oxides.
+
+**TL14 - Massive chert with benthic foraminifera.** Massive mudstone, with uncommon allochems/bioclasts which are larger, benthic foraminifera (1-2 mm). It has two fabrics, both with foraminifera: fine and sub-translucent; coarse and opaque. No cortex.
+
+**TL15 - Massive brown chert with inclusions.** Massive wackestone with common, unidentifiable round inclusions, speckling and iron oxides. It is opaque, glossy but with dull splotches, and without cortex.
+
+**TL16 - Radiolarite with inclusions.** Massive chert with uncommon allochems which are unpreserved, unidentifiable fossils. Thin, rounded cortex.
 
 # References
