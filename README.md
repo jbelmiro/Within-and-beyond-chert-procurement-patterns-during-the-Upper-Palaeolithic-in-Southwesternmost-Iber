@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# sourcearticle
+# Chert procurement patterns Upper Palaeolithic Southwesternmost Iberia
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jbelmiro/sourcearticle/master?urlpath=rstudio)
 

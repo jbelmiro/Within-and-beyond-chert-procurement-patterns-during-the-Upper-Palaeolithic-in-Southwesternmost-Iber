@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 Title <- "Chert use and procurement patterns during the Upper Palaeolithic in Southwesternmost Iberia"
 ```
 
-# sourcearticle
+# Chert procurement patterns Upper Palaeolithic Southwesternmost Iberia
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jbelmiro/sourcearticle/master?urlpath=rstudio)
 
