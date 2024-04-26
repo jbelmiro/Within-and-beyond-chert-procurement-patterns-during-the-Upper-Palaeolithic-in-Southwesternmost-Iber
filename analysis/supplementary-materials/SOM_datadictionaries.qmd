@@ -1,30 +1,30 @@
 ---
-title: "Data dictionaries"
+title: "Chert use and procurement patterns during the Upper Palaeolithic in Southwesternmost Iberia, Journal of Paleolithic Archaeology"
+subtitle: "Online Resource 1: Data dictionaries for macroscopic and petrographic analyses"
 author:
-  - Jane Doe:
+  - Joana Belmiro:
+      orcid: https://orcid.org/0000-0003-4951-2907
       correspondence: "yes"
-      email: janedoe@fosg.org
-      orcid: 0000-0003-1689-0557
+      email: jfbelmiro@ualg.pt
       institute:
-        - fosg
-        - fop
-  - John Q. Doe:
-      institute: fosg
-      orcid: 0000-0003-1689-0558
-  - Peder Ås:
-      institute: fosg
-      orcid: 0000-0003-1689-0559
-  - Juan Pérez:
-      orcid: 0000-0003-1689-0551
+        - Interdisciplinary Center for Archaeology and the Evolution of Human Behaviour, University of Algarve, Faro, Portugal
+  - Xavier Terradas:
+      orcid: https://orcid.org/0000-0002-8000-5607
+      institute: 
+        - Institución Milá y Fontanals de Investigación en Humanidades, Consejo Superior de Investigaciones Científicas, Barcelona, Spain
+  - Salvador Dominguez-Bella:
+      orcid: https://orcid.org/0000-0003-3892-763X
+      institute: 
+        - UGEA-PHAM, Departamento de Ciencias de la Tierra, Facultad de Ciencias, Universidad de Cádiz. Puerto Real, Cádiz, Spain
+  - João Cascalheira:
+      orcid: https://orcid.org/0000-0003-0321-8892
       institute:
-        - name: Acme Corporation
-  - Max Mustermann:
-      orcid: 0000-0003-1689-0552
+        - Interdisciplinary Center for Archaeology and the Evolution of Human Behaviour, University of Algarve, Faro, Portugal
 title-block-published: "Last updated"  
 format: 
-  pdf:
+  docx:
     classoption: landscape
-    reference-doc: "../templates/template.docx" # Insert path for the DOCX file
+    reference-doc: "../templates/template_landscape.docx" # Insert path for the DOCX file
 execute:
   echo: false
   warning: false
@@ -32,20 +32,97 @@ execute:
   comment: "#>"
   fig-path: "../figures/"
   fig-dpi: 600
+number-sections: true
 filters:
   - ../templates/scholarly-metadata.lua
   - ../templates/author-info-blocks.lua
   - ../templates/pagebreak.lua
 bibliography: ../paper/references.bib
+toc: true
 csl: "../templates/journal-of-archaeological-science.csl" # Insert path for the bib-style
 ---
 
-# 1. Data dictionaries
+# Macroscopic type characterization
 
-## 1.1. Group characterization
+```{r}
+#| label: tbl-macrogroup
+#| tbl-cap: Data dictionary for macroscopic characterization of the archaeological chert types and sub-types.
 
-## 1.2. Single characterization
+tibble::tribble(
+  ~Variable, ~"Allowed values", ~Description, ~Reference,
+  "Type", "-", "Chert type ID.", "-",
+  "Sub-type", "-", "Chert subtype ID.", "-",
+  "Color", "-", "Color according to the Munsell Soil Color Chart.", "-",
+  "Fabric", "Homogeneous, Heterogeneous", "Distribution of color, luster, translucency, feel and pattern in the sample. **Heterogeneous**: presence of different characteristics within one single sample.", "@luedtke_archaeologists_1992",
+  "Luster", "Shiny, Medium, Dull", "The character of light reflected by minerals. **Shiny**: very intense luster; **Medium**: some luster but it is not very intense; **Dull**: no luster.", "@crandell_macroscopic_2005-1 and @luedtke_archaeologists_1992",
+  "Translucency - qualitative", "Highly translucent, Translucent, Sub-translucent, Opaque", "Degree to which the light can penetrate a material when held 5cm from a 40w lamp. **Highly translucent**: transparent or near transparent; **Translucent**: silhouettes can be seen through the sample’s thin part and/or light passes through the thick parts; **Sub-translucent**: light only passes through the thin parts; **Opaque**: no or almost no light passes through.", "@bressyCaracterisationGestionSilex2002 and @crandell_macroscopic_2005-1",
+  "Translucency - quantitative", "-", "Measurement in mm of the thickness where light begins to pass through in translucent to sub-translucent samples.", "-",
+  "Feel", "Smooth, Semi-smooth, Rough", "A fingernail is dragged across the sample’s surface. **Smooth**: nothing can be felt; **Semi-smooth**: slight rough feel; **Rough**: if the sample is distinctly rough.", "@bressyCaracterisationGestionSilex2002 and @crandell_macroscopic_2005-1",
+  "Pattern", "Shaded, Spotted, Splotched, Broad mottling, Marbled mottling, Speckling, Flecks, Banded, Streaked, Laminated, Finely laminated", "Type of pattern present on the sample. **Shaded**: gradient color or texture change; **Spotted**: circle patterns less than 30% of the surface area; **Splotched**: irregular shapes less than 30% of the surface area; **Broad mottling**: large, irregular blotching, covering more than 30% of the surface; **Marbled mottling**: large relatively round shapes, covering more than 30% of the surface; **Speckling**: small dots, well distributed over the surface; **Flecks**: small dots, grouped together; **Banded**: regular lines thicker than 1 cm; **Streaked**: less regular and wider banding; **Laminated**: lines with thickness inferior to 1 cm; **Finely laminated**: series of lines with thickness inferior to 1 mm.", "@crandell_macroscopic_2005-1",
+  "Cortex type", "Outcrop, Rounded, Pebble, Indeterminate", "**Outcrop**: uneven and low level of alteration to the original cortical surface; **Rounded**: homogeneous and rounded cortex, with possible slight alteration to the original cortical surface; **Pebble**: Smooth and highly weathered surface, with high degree of alteration to the cortical surface.", "-",
+  "Cortex maximum thickness", "-", "Measurement in mm of the thickest cortex area.", "-",
+  "Cortex minimum thickness", "-", "Measurement in mm of the thinnest cortex area.", "-",
+  "Cortex transition", "Sharp, Gradual", "**Sharp**: transition between cortex and chert is sharp, with an obvious change in colors and textures; **Gradual**: cortex and chert show a gradual transition with gradient colors and textures", "-",
+  "Allochems", "-", "Macroscopically visible allochems (excluding bioclasts).", "-",
+  "Bioclasts", "-", "Macroscopically visible bioclasts.", "-",
+  "Fracture", "Conchoidal, Uneven", "Presence or absence of a conchoidal fracture.", "-",
+  "Quality", "Good, Acceptable, Low", "Combination of: 1) homogeneity, understood as the lack of fractures, flaws and cracks; 2) fine granularity and smooth feel; 3) lack of inclusions that due to their nature or distribution impact the knapping.", "@luedtke_chert_1978 and @brandl_genesis_2013"
+) |>
+  knitr::kable()
 
-## 1.3. Petrographic characterization
+```
 
-# 2. References
+# Macroscopic individual analysis
+
+```{r}
+#| label: tbl-macroind
+#| tbl-cap: Data dictionary for macroscopic analysis of archaeological chert artifacts.
+
+tibble::tribble(
+  ~Variable, ~"Allowed values", ~Description, ~Reference,
+  "Area", "Terrace, Shelter", "Archaeological artifact provenance area from Vale Boi.", "-",
+  "Level", "-", "Individual artefact archaeological level.", "-",
+  "ID", "-", "Individual artefact ID.", "-",
+  "Type", "-", "Type of chert characterized with macroscopic and microscopic methods.", "-",
+  "Sub-type", "-", "Subtype of chert characterized with macroscopic and microscopic methods.", "-",
+  "Weight", "-", "Weight of individual artefacts measured in gr.", "-",
+  "Alterations", "Cracks, Potlids, Reddening, Gloss, White patina, Patina, Other", "**Cracks**: surface shrinkage cracks or crazing, described as the result of contact to high temperatures; **Potlids**: small, circular and concave negative where a fragment appears to have popped off; **Reddening**: changes to the surface of the chert from the original color to a reddish/brown color; **Gloss**: glossy luster which differs from the original chert's luster, present in all the artifacts or in specific removals; **White patina**: film, rind or layer produced on the surface of the chert visible as a color change from the original color to a white color; **Patina**: film, rind or layer produced on the surface of the chert visible as a color change from the original color (excluding white patina); **Other**: other types of alterations to the original appearance of chert, such as rolled edges or pits.", "@hurst_patination_1961; @glauberman_flint_2012; @luedtke_chert_1978; @abdolahzadehHeatExposedLithics2023; @pattersonThermalDamageChert1995; @purdyFracturesArchaeologist1975",
+  "Cortex", "Yes, No", "Presence or absence of cortex.", "-",
+  "Cortex thickness", "Thin, Medium, Thick", "Thickness of cortex measured in cm, following defined intervals. **Thin**: cortex thickness equal or inferior to 0.5 cm; **Medium**: 0.5-2 cm; **Thick**: >2 cm.", "-",
+  "Cortex appearance", "Outcrop, Rounded, Pebble, Indeterminate", "**Outcrop**: uneven and low level of alteration to the original cortical surface; **Rounded**: homogeneous and rounded cortex, with possible slight alteration to the original cortical surface; **Pebble**: Smooth and highly weathered surface, with high degree of alteration to the cortical surface", "-",
+  "Inclusions", "-", "Macroscopically visible inclusions (allochems and bioclasts).", "-"
+) |>
+  knitr::kable()
+```
+
+# Petrographic analysis
+
+```{r}
+#| label: tbl-petrography
+#| tbl-cap: Data dictionary for petrographic characterization of thin sections.
+
+library(tibble)
+
+tibble::tribble(
+  ~Variable, ~"Allowed values", ~Description, ~Reference,
+  "ID", "-", "Individual thinsection ID.", "-",
+  "Outcrop/level", "-", "Outcrop name or archaeological level.", "-",
+  "Lithology", "-", "Type of rock.", "-",
+  "Texture", "Mudstone, Wackestone, Packstone, Grainstone, Boundstone, Other", "**Mudstone**: muddy carbonate rock containing less then 10 % grains; **Wackestone**: mud-supported carbonate rock containing more than 10 % grains; **Packstone**: grain-supported muddy carbonate rock; **Grainstone**: mud-free carbonate rocks, which are grain supported; **Boundstone**: carbonate rocks showing signs of being bound during deposition.", "@dunhamClassificationCarbonateRocks1962",
+  "Microstructure", "Homogeneous, Banded, Laminar, Nodular, Brechoid, Other", "Distribution of crystals and clasts within the rock at a microscopic scale. **Homogeneous**: equally spread in the rock; **Banded**: distributed in bands; **Nodular**: distributed in clumps; **Brechoid**: fracturing of the rock irregularly.", "@castro_dorado_petrografibasica_1989",
+  "Orthochem", "-", "Materials formed in two ways: 1) deposited directly from supersaturated aqueous solutions due to chemical reactions or evaporation; 2) formed by the replacement of existing sedimentary materials.", "@vernonMicrostructuresSedimentaryRocks2018",
+  "Orthochem type", "Essential (ES), Accessory (AC), Secondary (SE)", "**Essential**: minerals that form more than 5% of the volume of the rock; **Accessory**: Minerals with proportion of less than 5% of the volume of the rock; **Secondary**: products of the alteration (hydrothermal or physical), independent of the proportion within the rock.", "@castro_dorado_petrografibasica_1989",
+  "Orthochem description", "-", "General description of the orthochem and where it is identified.", "-",
+  "Orthochem (%)", "-", "Approximate percentage of the orthochem’s presence in the total thin-section area.", "-",
+  "Allochem", "-", "Material formed by the movement and reorganization into new shapes by chemical, physical or biological processes within the depositional basin (ex. ooliths, fecal pellets, iron oxide minerals).", "@vernonMicrostructuresSedimentaryRocks2018",
+  "Allochem (freq)", "Rare, Uncommon, Common, Very frequent", "**Rare**: present one or two elements; **Uncommon**: present three to 10 elements; **Common**: present 11 to 20 elements; Very frequent:> 20 elements.", "-",
+  "Bioclast", "-", "Also known as skeletal particles, are the remains (complete or fragmented) of the hard parts of carbonate-secreeting organisms.", "@adamsAtlasSedimentaryRocks1988",
+  "Bioclast (freq)", "Rare, Uncommon, Common, Very frequent", "**Rare**: present one or two elements; **Uncommon**: present three to 10 elements; Common: present 11 to 20 elements; **Very frequent**:> 20 elements.", "-",
+  "Porosity (%)", "-", "Approximate frequency of effective porosity.", "-",
+  "Porosity type", "Interparticle, Moldic, Fenestral, Fracture, Vuggy, Shelter, Other", "**Interparticle**: porosity between particles; **Moldic**: Porosity formed by selective removal of an individual constituent of the rock; **Fenestral**: Pores larger than grain-supported interstices (interparticle); **Fracture**: Porosity formed by fracturing; **Vug**: Pores larger then 1/16 mm in diameter and somewhat equant in shape; **Shelter**: Porosity created by the sheltering effect of large sedimentary particles; **Other**: Other types of porosity.", "@choquetteGeologicNomenclatureClassification1970",
+  "Sedimentary structures", "Parallel lamination, Convoluted lamination, Bands/zonations, Burrow, Other", "**Parallel lamination**: sedimentary strata less than 10 mm thick, recognizable due to variation in structure or composition and more or less parallel bounding surfaces; **Convoluted lamination**: symmetrical about a vertical plane or leaning and asymmetrical, and usually exhibit narrow vertical upturned laminae, often truncated at the top, separated by a broader synclinal downfolds; **Bands/zonations**: limited areas with different characteristics related to changes in the sedimentation or cementation process; **Burrow**: bioturbation structures caused by activity of an organism that disrupts the stratification features; **Other**: other types of sedimentary structures.", "@middletonEncyclopediaSedimentsSedimentary2005"
+  ) |>
+knitr::kable()
+```
+
+# References

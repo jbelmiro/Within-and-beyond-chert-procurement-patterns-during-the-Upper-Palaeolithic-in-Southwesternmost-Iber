@@ -1,23 +1,23 @@
-﻿Type,Sample ID,Level,TS #
-Type 1, I19-1615  , 4D    ,8
- Type 2             , I19-2835  ,5,17
- Type 2 (altered)   , H18-1938  , 4D    ,20
- Type 2 (multi), H21-3095  , 4C    ,6
- Type 2 (multi), H21-4234  ,5,7
- Type 2 (reddening) , H19-2426  , 4D    ,3
- Type 2 (rmu_17)    , I19-2226  , 4E    ,18
- Type 3, I20-3160  ,5,10
- Type 4, H20-2441  , 4E    ,19
- Type 5, I21-3252  , 4E    ,14
- Type 5 (banded)      , H18-2708  ,5,2
-Type 6 (CPT), I19-3350  ,6,9
-Type 6 (CPT), I20-3689  ,6,16
-Type 6 (CPT)         , J18-778   ,5,13
-Type 6 (LLB)       , I20-3951  ,6,11
- Type 6 (6E)       , H19-4074  ,6,4
- Type 7 (01b; 01a) , L19-64    ,5,12
- Type 7 (04)       ,J18-1264,8,22
- Type 8, H19-2924  , 4E    ,1
- Type 9, I21-2966  , 4C    ,15
-Type 10, H19-4216  ,6,5
- White patinated    , H20-4166  ,6,21
+﻿Type,Sample ID,Level,Macroscopic variability/sub-type description.
+Type 1, I19-1615  , 4D    ,-
+ Type 2             , I19-2835  ,5,-
+ Type 2, H18-1938  , 4D    ,Type 2 sample with surface alterations.
+ Type 2, H21-3095  , 4C    ,Type 2 multi-colored banding sub-type with concentration of bioclasts.
+ Type 2, H21-4234  ,5,Type 2 multi-colored banding sub-type without concentration of bioclasts.
+ Type 2, H19-2426  , 4D    ,Type 2 sample with reddening and possible heat-related alterations.
+ Type 2, I19-2226  , 4E    ,Type 2 sample with large iron oxides and rare sponge spicules.
+ Type 3, I20-3160  ,5,-
+ Type 4, H20-2441  , 4E    ,-
+ Type 5, I21-3252  , 4E    ,-
+ Type 5, H18-2708  ,5,Type 5 banding sub-type.
+Type 6, I19-3350  ,6,Type 6 sample with light white patination.
+Type 6, I20-3689  ,6,-
+Type 6, J18-778   ,5,Type 6 with thick white patination.
+Type 6, I20-3951  ,6,Type 6 light brown with opaque white exterior sub-type.
+ Type 6, H19-4074  ,6,Type 6 with lamination and white broad mottling sub-type.
+ Type 7, L19-64    ,5,Type 7 with sponge spicule (01a) and peloidal (01b) facies.
+ Type 7,J18-1264,8,Type 7 with peloidal/oolitic (04) facies.
+ Type 8, H19-2924  , 4E    ,-
+ Type 9, I21-2966  , 4C    ,-
+Type 10, H19-4216  ,6,-
+INDET, H20-4166  ,6,Sample with thick white patination.
