@@ -158,17 +158,18 @@ S_layerdata <- S_layerdata %>%
   mutate_at("Date", str_replace, "20", "") %>%
   dplyr::rename("YEAR" = "Date") %>% 
   unite(col='ID', cols_to_concat_shelter, sep="-", remove=FALSE) %>% 
-  select(ID, Layer)
+  select(ID, Layer) %>% 
+  distinct(ID, .keep_all = TRUE)
 
 S_field_data <- S_field_data %>%
   mutate_at("YEAR", str_replace, "20", "") %>%
   unite(col='ID', cols_to_concat_shelter, sep="-", remove=FALSE) %>% # Unite YEAR with Id s«using cols_to_concat
-  select(ID, X, Y, Z, CODE) %>% # Selecting important variables
+  select(ID, X, Y, Z, CODE) %>%
+  filter(CODE == "L") %>% # Selecting important variables
   distinct(ID, .keep_all = TRUE)
   
-
-shelter_field_data <- full_join(S_field_data, S_layerdata, by = "ID")
-S_dataset <- left_join(S_RM_data, shelter_field_data, by = "ID", relationship = "many-to-many")
+shelter_field_data <- left_join(S_field_data, S_layerdata, by = "ID")
+S_dataset <- left_join(S_RM_data, shelter_field_data, by = "ID")
 
 ```
 
@@ -233,7 +234,7 @@ In this study, the terms chert and chalcedony follow the definitions provided by
 
 Chert was chosen for this study as it is one of the three main used raw materials at the archaeological site of Vale Boi alongside quartz and greywacke. Other raw materials such as chalcedony, dolerite, and schists have also been identified [@belmiro_gravettian-solutrean_2021; @cascalheiraTecnologiaLiticaSolutrense2010; @pereira_territory_2016-1].
 
-Using the field database with all individually coordinated lithic artefacts (all pieces larger than \~2 cm), we compared the incidence of chert and chalcedony in opposition to the remaining lithics of other raw materials. @fig-rm-comparison shows that for the selected levels of the Terrace area (@fig-rm-comparison a), chert represents only \~15-20% of the lithic assemblage, while in the Shelter area (@fig-rm-comparison b), chert represents \~50-70% of the lithic assemblage from the Solutrean layers A, B, and C. Based on previous lithic studies in the Terrace and Shelter areas, the remaining 80% of other raw materials are mostly composed of quartz and greywacke [@belmiro_gravettian-solutrean_2021; @cascalheiraTecnologiaLiticaSolutrense2010; @marreirosPrimeirasComunidadesHomem2009].
+Using the field database with all individually coordinated lithic artefacts (all pieces larger than \~2 cm), we compared the incidence of chert and chalcedony in opposition to the remaining lithics of other raw materials. @fig-rm-comparison shows that for the selected levels of the Terrace area (@fig-rm-comparison a), chert represents only \~15-20% of the lithic assemblage, while in the Shelter area (@fig-rm-comparison b), chert represents \~35-50% of the lithic assemblage from the Solutrean layers A, B, and C. Based on previous lithic studies in the Terrace and Shelter areas, the remaining 80% of other raw materials are mostly composed of quartz and greywacke [@belmiro_gravettian-solutrean_2021; @cascalheiraTecnologiaLiticaSolutrense2010; @marreirosPrimeirasComunidadesHomem2009].
 
 Although systematic raw material research has not been conducted on these materials, according to the regional geological context, they have been interpreted as local and readily accessible in the vicinity of the site [@pereira_territory_2016-1]. Frequently, the quartz and greywacke assemblages include large amounts of shattered and unknapped chunks or slabs. Previous studies from the Terrace area have also shown that when removing shatter and chunks, the percentages of chert become much more representative when compared to greywacke and quartz [@belmiro_gravettian-solutrean_2021; @belmiroProtoSolutreanLithicTechnology2020]. Based on this, despite the smaller amounts of individually plotted chert artefacts in the field database, chert continues to be one of the main raw materials to produce lithic stone tools, with complete knapping sequences and formal toolkits. The importance of chalcedony has also been shown in its use to produce formal tool kits during specific technocomplexes at the site [@belmiro_gravettian-solutrean_2021].
 
@@ -243,7 +244,7 @@ Although systematic raw material research has not been conducted on these materi
 
 # Terrace rm comparison
 ## Data preparation
-context_comp <- field_data %>%
+context_comp <- field_data %>% # Using the field data to obtain lithic info beyond the analysed chert/chalcedony
   mutate(Level = case_when(Level == "4B" ~ "4", # Collapsing samples from level 4B into 4
                            Level == "7C" ~ "7",
                            Level == 8 ~ "7", # Collapsing samples from Level 7C and Level 8 into 7
@@ -253,18 +254,18 @@ context_comp <- field_data %>%
     Level == 5 & Z < 24.1 ~ "5",
     TRUE ~ Level)) %>% 
   filter(!Level %in% c("3B", "5B", "5C")) %>% 
-  dplyr::filter(Code %in% c("LITHIC", "POINT"))
+  dplyr::filter(Code %in% c("LITHIC", "POINT")) # Field data includes ALL artifacts; filtering only lithics
 
-dataset_comp <- phase_dataset %>% 
-  select(ID, RMTYPE)
-T_comp <- full_join(context_comp, dataset_comp, by = "ID")
+dataset_comp <- phase_dataset %>% # Using the analysed DB to get chert/chalcedony data
+  select(ID, RMTYPE) # Selecting only ID (to join dbs and RMTYPE to know whether chert or chalcedont)
+T_comp <- full_join(context_comp, dataset_comp, by = "ID") # Joining by ID. the RMTYPE column has the RM type from the analysis and NA for those which were not analysed, and correspond to non-chert artifacts
 T_comp["RMTYPE"][is.na(T_comp["RMTYPE"])] <- "Other" # All NA's (other RMs) turned into "Other"
 
 T_comp <- T_comp %>% 
  mutate(Rawmaterial = case_when(
-    RMTYPE == "Other" ~ "Other",
-    RMTYPE == "TYPE 1" ~ "Chalcedony",
-    RMTYPE != "Other" | RMTYPE != "TYPE 1" ~ "Chert")) %>% # Collapsing all cherts into one single category
+    RMTYPE == "Other" ~ "Other", # Keeping Other as Other
+    RMTYPE == "TYPE 1" ~ "Chalcedony", # Naming Chalcedony
+    RMTYPE != "Other" | RMTYPE != "TYPE 1" ~ "Chert")) %>% # Collapsing all cherts into one single category (All but Other and TYPE1)
   dplyr::filter(Level %in% c("4", "4C", "4D", "4E", "4E/5", "6", "7")) # Choosing only UP levels (excluding 3)
 
 ## Barplot
@@ -286,8 +287,7 @@ T_comp_bar <- T_comp %>%
 
 # Shelter rm comparison
 ## Data preparation
-S_field_comp <- S_field_data %>% 
-  filter(CODE == "L") # Filtering only lithics
+S_field_comp <- S_field_data
 S_data_comp <- S_dataset %>% 
   dplyr::select(ID, RMTYPE)
 S_comp <- full_join(S_field_comp, S_data_comp, by = "ID")
@@ -555,17 +555,9 @@ In the Gravettian occupations (levels 6 and 7) and at the start of the Proto-Sol
 
 count_table <- phase_dataset %>%
   filter(RMTYPE != "INDET") %>% 
-  mutate(Level = case_when(
-    Level == "4C" | Level == "4D" ~ "4",
-    Level == "4E/5" ~ "4E",
-    Level == "7" ~ "6",
-    .default = Level)) %>% 
-  mutate(RMTYPE = case_when(
-    RMTYPE == "TYPE 1" | RMTYPE == "TYPE 2" | RMTYPE == "TYPE 3" | RMTYPE == "TYPE 4" | RMTYPE == "TYPE 5" ~ "Local",
-    RMTYPE == "TYPE 6" | RMTYPE == "TYPE 7" | RMTYPE == "TYPE 8" | RMTYPE == "TYPE 9" | RMTYPE == "TYPE 10" | RMTYPE == "TYPE 11" | RMTYPE == "TL" ~ "Non-local")) %>% 
-  #mutate(RMTYPE = factor(RMTYPE, levels = c("TYPE 1","TYPE 2", "TYPE 3", "TYPE 4",
-                                       # "TYPE 5", "TYPE 6","TYPE 7", 
-                                        #"TYPE 8", "TYPE 9", "TYPE 10", "TYPE 11", "TL"))) %>%
+  mutate(RMTYPE = factor(RMTYPE, levels = c("TYPE 1","TYPE 2", "TYPE 3", "TYPE 4",
+                                        "TYPE 5", "TYPE 6","TYPE 7", 
+                                        "TYPE 8", "TYPE 9", "TYPE 10", "TYPE 11", "TL"))) %>%
   dplyr::group_by(Level, RMTYPE) %>% 
   dplyr::summarise(n = n()) %>%
   mutate(percent = n/sum(n)) %>% 
@@ -583,13 +575,8 @@ count_plot <- ggplot(count_table, aes(x=Level,y=percent, fill = RMTYPE)) +
   labs(y = "Count %") +# change labels
   guides(fill=guide_legend(title=NULL)) + # remove legend title
   geom_text(aes(label=ifelse(percent >= 0.05, paste0(sprintf("%.1f", percent*100),"%"),"")),
-                position=position_stack(vjust=0.5), colour="white", size=5) +
-  theme(axis.text.x = element_text(size = 16),
-        axis.text.y = element_text(size = 16),  
-        axis.title.x = element_blank(),
-        axis.title.y = element_text(size = 12, angle = 90, hjust = .5, vjust = .5),
-        strip.text = element_text(size = 16),
-        legend.text = element_text(size = 16)) +
+                position=position_stack(vjust=0.5), colour="white", size=3) +
+  theme(axis.title.x = element_blank()) +
   scale_fill_manual(values = c("#C74B50", "#D49B54", "#911F27", "#630A10",
                               "#FACE7F", "#845460", "#EAD3CB", "#BDC7C9",
                               "#2B4F60", "#BDD2B6", "#798777", "#FCF0C8"))
@@ -889,7 +876,7 @@ We would like to thank the Fundacão para a Ciência e Tecnologia for the fundin
 
 ## Funding
 
-This study was supported by the Fundacão para a Ciência e Tecnologia (https://www.fct.pt/), attributed to Joana Belmiro with the contract reference 2020.08722.BD (DOI: 10.54499/2020.08722.BD), and João Cascalheira with the contract reference DL57/2016/CP1361/CT0026. This study was also supported by the Seed Fund’21 attributed to Joana Belmiro, by ICArEHB – The interdisciplinary Center for Archaeology and Evolution of Human Behaviour, funded by the Fundacão para a Ciência e Tecnologia (https://www.fct.pt/) under program UIDP/04211/2020. Open Access was funded by Fundacão para a Ciência e Tecnologia (https://www.fct.pt/) and Universidade do Algarve.
+This study was supported by the Fundacão para a Ciência e Tecnologia (https://www.fct.pt/), attributed to Joana Belmiro with the contract reference 2020.08722.BD (DOI: 10.54499/2020.08722.BD), and João Cascalheira with the contract reference DL57/2016/CP1361/CT0026. This study was also supported by the Seed Fund’21 attributed to Joana Belmiro, by ICArEHB – The interdisciplinary Center for Archaeology and Evolution of Human Behaviour, funded by the Fundacão para a Ciência e Tecnologia (https://www.fct.pt/) under program UIDP/04211/2020. Open Access was funded by Fundacão para a Ciência e Tecnologia (https://www.fct.pt/) and Universidade do Algarve.
 
 ## Competing Interests
 
