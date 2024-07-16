@@ -131,7 +131,7 @@ round(chisq_rm$residuals, 3)
 
 ```
 
-The chert raw material analysis of the Terrace and Shelter areas of the archaeological site of Vale Boi revealed the presence of varied types of local and non-local chert and chalcedony throughout the stratigraphy. However, we identified differences in the percentages of these types throughout the several Upper Paleolithic occupations in the Terrace area. 
+The chert raw material analysis of the Terrace and Shelter areas of the archaeological site of Vale Boi revealed the presence of varied types of local and non-local chert and chalcedony throughout the stratigraphy. However, we identified differences in the percentages of these types throughout the several Upper Paleolithic occupations in the Terrace area.
 
 To explore the statistical significance of these patterns in the Terrace area, a chi-square test of independence was performed to determine whether the chert types are related to the archaeological layer. The results are significant, X-square = 817.79, *p* \< 2.2e-16, showing statistically significant differences in the chert types present throughout the occupations. @fig-mosaicplot shows a mosaic plot visualising the residuals of the test and @fig-corrplots shows the visual correlations between the variables in level and chert type. These show different associations and patterns throughout the different levels and occupations.
 
@@ -158,6 +158,6 @@ mosaic(~ Level + RMTYPE,
 #| label: fig-corrplots
 #| fig-cap: Correlation plot using Pearson's residuals from the chi-square test, showing positive and negative correlations between archaeological levels and chert types.
 
-corrplot(chisq_rm$residuals, method = "color", is.corr = FALSE)
+corrplot(chisq_rm$residuals, method = "color", is.corr = FALSE, mar=c(0,0,1,1), cl.ratio=0.5)
 
 ```
