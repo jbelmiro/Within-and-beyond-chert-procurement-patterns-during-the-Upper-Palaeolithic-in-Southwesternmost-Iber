@@ -1,5 +1,5 @@
 ---
-title: "Chert use and procurement patterns during the Upper Palaeolithic in Southwesternmost Iberia, Journal of Paleolithic Archaeology"
+title: "Within and beyond: chert procurement patterns during the Upper Palaeolithic in Southwesternmost Iberia"
 subtitle: "Online Resource 1: Data dictionaries for macroscopic and petrographic analyses"
 author:
   - Joana Belmiro:

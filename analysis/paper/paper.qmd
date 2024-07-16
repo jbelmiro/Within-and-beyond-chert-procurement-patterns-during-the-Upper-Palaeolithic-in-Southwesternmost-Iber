@@ -1,5 +1,5 @@
 ---
-title: "Chert use and procurement patterns during the Upper Palaeolithic in Southwesternmost Iberia"
+title: "Within and beyond: chert procurement patterns during the Upper Palaeolithic in Southwesternmost Iberia"
 author:
   - Joana Belmiro:
       orcid: https://orcid.org/0000-0003-4951-2907
