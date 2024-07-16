@@ -484,7 +484,7 @@ Based on the previously described macroscopic and petrographic characteristics o
 
 ```{r}
 #| label: fig-local-types
-#| fig-cap: Variability of local chert types and main petrographic characteristics. a) Type 1 macroscopic appearance (a1) and thin-section (a2). b) Type 3 macroscopic appearance (b1) and thin-section (b2). c-d) Type 2 macroscopic appearance (c1-d1) and thin-section (c2-d2). e-f) Type 4 macroscopic appearance (e-f1) and thin-section (f2-f3). g-h) Type 5 macroscopic appearance (g-h1) and thin section (h2-h3).
+#| fig-cap: Variability of local chert types and main petrographic characteristics. a) Type 1 macroscopic appearance (a1) and thin section (a2). b) Type 3 macroscopic appearance (b1) and thin section (b2). c-d) Type 2 macroscopic appearance (c1-d1) and thin section (c2-d2). e-f) Type 4 macroscopic appearance (e-f1) and thin section (f2-f3). g-h) Type 5 macroscopic appearance (g-h1) and thin section (h2-h3).
 
 knitr::include_graphics(here::here("analysis/figures/local_grid.png"))
 
@@ -496,7 +496,7 @@ We identified six chert types with macroscopic and petrographic characteristics 
 
 ```{r}
 #| label: fig-distance-types
-#| fig-cap: Variability of non-local types and main petrographic characteristics. a-b) Type 6 macroscopic appearance (a1-b1) and thin-section (a2-b2); b1-b2 correspond to a sample covered 100% in white patina. c-d) Type 7 macroscopic appearance (c1-d1) and thin-section (c2-d2) of peloidal facies (c1-c2) and oolitic facies (d1-d2). e-f) Type 8 macroscopic appearance (e-f1) and thin-section (f2-f3); white and black arrows correspond to foraminifera. g) Type 9 macroscopic appearance (g1) and thin-section (g2). Type 10 macroscopic appearance (h1) and thin-section (h2).
+#| fig-cap: Variability of non-local types and main petrographic characteristics. a-b) Type 6 macroscopic appearance (a1-b1) and thin section (a2-b2); b1-b2 correspond to a sample covered 100% in white patina. c-d) Type 7 macroscopic appearance (c1-d1) and thin section (c2-d2) of peloidal facies (c1-c2) and oolitic facies (d1-d2). e-f) Type 8 macroscopic appearance (e-f1) and thin section (f2-f3); white and black arrows correspond to foraminifera. g) Type 9 macroscopic appearance (g1) and thin section (g2). Type 10 macroscopic appearance (h1) and thin section (h2).
 
 knitr::include_graphics(here::here("analysis/figures/nonlocal_grid.png"))
 
@@ -743,7 +743,7 @@ The same raw materials found in the Terrace area are also found in the Solutrean
 s_data_plots <- S_dataset %>% # sorting missing values and filtering non-solutrean layers
   filter(RMTYPE != "INDET" & WEIGHT != "0") %>% 
   mutate_at(vars(Layer), ~replace_na(., "ND")) %>% 
-  filter(CODE != "B" & Layer != "D" & Layer != "ND") %>% #removing buckets (B)
+  filter(CODE != "B" & Layer != "D" & Layer != "ND" & Layer != "No info") %>% #removing buckets (B)
   mutate(RMTYPE = factor(RMTYPE, levels = c("TYPE 1","TYPE 2", "TYPE 3", "TYPE 4",
                                         "TYPE 5", "TYPE 6","TYPE 7", 
                                         "TYPE 8", "TYPE 9", "TYPE 10", "TYPE 11", "TL")))
