@@ -38,7 +38,7 @@ filters:
 bibliography: references.bib
 csl: "../templates/springer-socpsych-author-date.csl" # Insert path for the bib-style
 abstract: |
-  Analyses of raw materials and the distinction between local/regional and long-distance sources have proven invaluable for understanding the extensive movements, interactions, and social networks during the Upper Palaeolithic (UP) in the Iberian Peninsula. However, unlike other parts of Iberia, research on the management and acquisition of raw materials in the south and west of Iberia remains relatively underdeveloped. Despite significant knowledge about the technological practices of Palaeolithic hunter-gatherers from Southern Portugal, particularly from studies conducted at the site of Vale Boi, there is a noticeable lack of focus on raw materials management. This paper presents the first comprehensive characterization of chert raw materials from the Gravettian, Proto-Solutrean, and Solutrean occupations at Vale Boi, using both macroscopic and petrographic techniques. Our study reveals that the majority of chert found at Vale Boi originates locally, within a 20 km radius. However, a non-neglectable portion of the chert comes from non-local sources, indicating >200 km raw material circulation from Central Portugal and Southern Spain.
+  Analyses of raw materials and the distinction between local/regional and long-distance sources have proven invaluable for understanding the extensive movements, interactions, and social networks during the Upper Palaeolithic in the Iberian Peninsula. However, unlike other parts of Iberia, research on the management and acquisition of raw materials in the south and west of Iberia remains relatively underdeveloped. Despite significant knowledge about the technological practices of Palaeolithic hunter-gatherers from Southern Portugal, particularly from studies conducted at the site of Vale Boi, there is a noticeable lack of focus on raw materials management. This paper presents the first comprehensive characterization of chert raw materials from the Gravettian, Proto-Solutrean, and Solutrean occupations at Vale Boi, using both macroscopic and petrographic techniques. Our study reveals that the majority of chert found at Vale Boi originates locally, within a 20 km radius. However, a non-neglectable portion of the chert comes from non-local sources, indicating >200 km raw material circulation from Central Portugal and Southern Spain.
 keywords: |
   Upper Paleolithic; Iberian Peninsula; Lithic raw materials; Petrography
 ---
@@ -884,7 +884,7 @@ The authors have no competing interests to declare that are relevant to the cont
 
 ## Data availability
 
-The authors confirm that all data generated and analysed during this study are available to the public in the Open Science Framework repository at: ++.
+The authors confirm that all data generated and analysed during this study are available to the public in the Open Science Framework repository at: https://doi.org/10.17605/OSF.IO/DBFT2.
 
 ## Author Contributions
 
@@ -897,6 +897,8 @@ Study conception and design was created by Joana Belmiro, João Cascalheira and 
 **Online Resource 2**: Terrace and shelter lithotypes complete macroscopic and petrographic description.
 
 **Online resource 3**: Summarised type macroscopic and petrographic features and epoch/stage identification.
+
+**Online resource 4**: Statistical analysis of Terrace chert types.
 
 <!-- The following line inserts a page break  -->
 
