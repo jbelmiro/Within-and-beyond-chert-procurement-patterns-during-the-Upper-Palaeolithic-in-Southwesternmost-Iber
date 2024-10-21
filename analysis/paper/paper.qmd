@@ -266,7 +266,7 @@ T_comp <- T_comp %>%
     RMTYPE == "Other" ~ "Other", # Keeping Other as Other
     RMTYPE == "TYPE 1" ~ "Chalcedony", # Naming Chalcedony
     RMTYPE != "Other" | RMTYPE != "TYPE 1" ~ "Chert")) %>% # Collapsing all cherts into one single category (All but Other and TYPE1)
-  dplyr::filter(Level %in% c("4", "4C", "4D", "4E", "4E/5", "6", "7")) # Choosing only UP levels (excluding 3)
+  dplyr::filter(Level %in% c("4", "4C", "4D", "4E", "4E/5","5", "6", "7")) # Choosing only UP levels (excluding 3)
 
 ## Barplot
 T_comp_bar <- T_comp %>%
