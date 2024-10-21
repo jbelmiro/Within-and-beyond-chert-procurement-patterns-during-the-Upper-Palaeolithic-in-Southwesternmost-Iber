@@ -370,7 +370,7 @@ knitr::include_graphics(here::here("analysis/figures/terrace_alterations.png"))
 
 ```{r}
 #| label: tbl-indet-freq
-#| tbl-cap: N and percentage of grouped and indeterminate (INDET) artefacts by level in the Terrace (levels 4 to 7) and Shelter (A to C) areas.
+#| tbl-cap: Number and percentage of grouped and indeterminate (INDET) artefacts by level in the Terrace (levels 4 to 7) and Shelter (A to C) areas.
 
 terrace_indet_table <- phase_dataset %>% 
   mutate(Group = if_else(RMTYPE=="INDET", "Indeterminate", "Grouped")) %>%
