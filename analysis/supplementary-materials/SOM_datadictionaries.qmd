@@ -63,6 +63,7 @@ tibble::tribble(
   "Cortex maximum thickness", "-", "Measurement in mm of the thickest cortex area.", "-",
   "Cortex minimum thickness", "-", "Measurement in mm of the thinnest cortex area.", "-",
   "Cortex transition", "Sharp, Gradual", "**Sharp**: transition between cortex and chert is sharp, with an obvious change in colors and textures; **Gradual**: cortex and chert show a gradual transition with gradient colors and textures", "-",
+  "Morphology of the nodules", "Irregular or rounded nodules, tabular, bedded, lenses", "Inferred morphology of the chert based on cortical samples, unknapped chunks or preserved geological features such as encasing rock attached.", "@trewinSEDIMENTARYROCKSChert2005",
   "Allochems", "-", "Macroscopically visible allochems (excluding bioclasts).", "-",
   "Bioclasts", "-", "Macroscopically visible bioclasts.", "-",
   "Fracture", "Conchoidal, Uneven", "Presence or absence of a conchoidal fracture.", "-",
