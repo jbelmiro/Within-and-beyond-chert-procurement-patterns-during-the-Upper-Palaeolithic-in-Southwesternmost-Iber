@@ -10,7 +10,7 @@ This repository contains the data and code for our paper:
 > Belmiro, J., Terradas, X., Dominguez-Bella, S., Cascalheira, J.,
 > (2025). *Chert use and procurement patterns during the Upper
 > Palaeolithic in Southwesternmost Iberia*. Journal of Paleolithic Archaeology
-> <10.1007/s41982-025-00209-2>
+> <https://doi.org/10.1007/s41982-025-00209-2>
 
 Our pre-print is online here:
 
