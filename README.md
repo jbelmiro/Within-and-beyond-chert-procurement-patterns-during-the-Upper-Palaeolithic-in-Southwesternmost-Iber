@@ -12,12 +12,6 @@ This repository contains the data and code for our paper:
 > Palaeolithic in Southwesternmost Iberia*. Journal of Paleolithic Archaeology
 > <https://doi.org/10.1007/s41982-025-00209-2>
 
-Our pre-print is online here:
-
-> Authors, (YYYY). *Chert use and procurement patterns during the Upper
-> Palaeolithic in Southwesternmost Iberia*. Name of journal/book,
-> Accessed 26 Apr 2024. Online at <https://doi.org/xxx/xxx>
-
 ### How to cite
 
 Please cite this compendium as:
